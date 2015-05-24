@@ -1,8 +1,8 @@
-# DShop e-commerce platform
+# DShop
 
 DShop is a Django based e-commerce platform
 
-## Setting up development environment
+## Development environment setup
 
 Download and install VirtualBox and Vagrant
 
@@ -22,6 +22,8 @@ When that finishes without errors start the application:
 You can now access the application at `http://localhost:8000`
 
 Admin panel is located at `http://localhost:8000/new-admin/` username/password is 
-dshop/dshop
+*dshop/dshop*
+
+PostgreSQL database is *dshop_devel* username/password: *dshop/dshop*
 
 Have fun.

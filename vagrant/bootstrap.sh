@@ -60,8 +60,8 @@ pg_createcluster --locale pl_PL.UTF8 --start $PG_CLUSTER main
 sudo -u postgres psql -c "create user dshop with superuser createdb password 'dshop';"
 sudo -u postgres psql -c "create database dshop_devel with encoding 'utf8' lc_ctype 'pl_PL.UTF8' owner dshop;"
 
-psql -h localhost -U dshop -f dshop-schema.sql dshop_devel
-psql -h localhost -U dshop -f dshop-data.sql dshop_devel
+psql -h localhost -U dshop -f dshop-schema.sql dshop_devel 1>/dev/null
+psql -h localhost -U dshop -f dshop-data.sql dshop_devel 1>/dev/null
 
 # Sphinx search
 cp sphinx.conf /etc/sphinxsearch
@@ -82,7 +82,7 @@ cp settings_local.py /vagrant/src/dshop
 
 chmod +x create-superuser.ex
 cd ../src/dshop
-./create-superuser.ex
+../../vagrant/create-superuser.ex
 cd ../../vagrant
 
 cp run.template /home/vagrant/run
