@@ -1,0 +1,8 @@
+<form class="hidden" id="add2cart" method="post" action="{% url dshop.main.views.cart %}">
+    <fieldset>
+        <input type="hidden" name="action" value="add"/>
+        <input type="hidden" name="article"/>
+        <input type="hidden" name="variant"/>
+        <input type="hidden" name="qty" value="1"/>
+    </fieldset>
+</form>

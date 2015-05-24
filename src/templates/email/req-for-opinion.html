@@ -1,0 +1,37 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+    <h1>Zamówienie nr {{ order.number }}</h1>
+    <p class="text">
+        Dziękujemy za dokonanie zakupów w Optionall.pl,
+    </p>
+
+    <p class="text">
+        <b>zachęcamy do wystawienia opinii o zakupionych produktach</b>.
+        Twoje opinie pomogą innym dokonać właściwego wyboru! Wystawienie opinii nie wymaga logowania.
+    </p>
+
+    <table class="base hcompact cart-items">
+        <tbody>
+            {% for ek in order.item_set.all %}
+                <tr class="item {% cycle 'o' 'e' %}" id="item-{{ ek.article_id }}">
+                    {% include "email/article-name-opinions.html" %}
+                    <td class="text">
+                        <a href="{{ ek.article.get_shoparticle.get_absolute_url }}#opinions">
+                            <strong>Wystaw opinię</strong>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if sys_param.opinion_service == "1" %}
+    <p class="text">
+        Zachęcamy również do ocenienia naszego sklepu w serwisie opinii o sklepach
+        <a href="{{ sys_param.opinion_service_url }}"><strong>{{ sys_param.opinion_service_name }}</strong></a>.
+    </p>
+    {% endif %}
+
+    <p class="text">Pozdrawiamy i zapraszamy ponownie!</p>
+{% endblock %}

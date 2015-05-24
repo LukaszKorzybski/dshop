@@ -1,0 +1,13 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+    <h1>Zamówienie nr {{ order.number }}</h1>
+
+    <h2>Wiadomość od obsługi</h2>
+    <div>{{ employee_msg|linebreaks }}</div>
+
+    <h2>Podsumowanie zamówienia</h2>
+    <div class="order locked">
+        {% include "email/order.html" %}
+    </div>
+{% endblock %}

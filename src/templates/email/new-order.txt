@@ -1,0 +1,29 @@
+{% extends "email/base.txt" %}
+
+{% block content %}
+Twoje zamówienie otrzymało numer: {{ order.numer }}
+
+Stan zamówienia możesz w każdej chwili sprawdzić pod adresem:
+{{ SSL_PROTO }}://{{ HOST_NAME }}{% url dshop.main.views.myOrder year=orderYear,order=order.id %}
+
+{% ifequal order.payment "TR" %}
+________________
+Dane do przelewu
+----------------
+
+{{ company.name }}
+ul. {{ company.addr_street }}
+{{ company.addr_code }}, {{ company.addr_town }}
+
+numer konta: {{ company.account_bank }}
+bank: {{ company.account_no }}
+
+W nazwie przelewu prosimy podać numer zamówienia.
+{% endifequal %}
+
+_______________________
+Podsumowanie zamówienia
+-----------------------
+{% include "email/order.txt" %}
+
+{% endblock %}

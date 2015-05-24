@@ -1,0 +1,140 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Moje konto - Optionall.pl{% endblock %}
+{% block pdivClass %}myAccount{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+
+    <h1>Moje Konto</h1>
+
+    {% include "include/myaccount_menu.html" %}
+
+    {% if request.GET.m %}
+        <ul class="infoBox text">
+            <li class="ic">
+                <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+                <div class="icon"></div>
+            </li>
+        
+        {% ifequal request.GET.m "pchanged" %}
+            <li>Hasło zostało pomyślnie zmienione.</li>
+        {% endifequal %}
+        {% ifequal request.GET.m "dchanged" %}
+            <li>Dane zostały pomyślnie zmienione.</li>
+        {% endifequal %}
+        {% ifequal request.GET.m "pcompleted" %}
+            <li>Profil został pomyślnie uzupełniony o dane adresowe.</li>
+        {% endifequal %}
+        </ul>
+    {% endif %}
+
+
+    <ul id="maininfo" class="infoBox text">
+        <li class="ic">
+            <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+            <div class="icon"></div>
+        </li>
+
+        <li>Tutaj możesz sprawdzić i zaktualizować swoje dane. Możesz także zmienić hasło.</li>
+        {% if not client.profile_complete %}
+            <li>
+                Profil Twojego konta jest niekompletny, brakuje w nim danych adresowych.
+                Jeśli chcesz otrzymać rabatową kartę klienta lub złożyć zamówienie musisz uzupełnić dane.
+                <a href="{% url dshop-cprofile %}">Uzupełnij profil</a>
+            </li>
+        {% endif %}
+
+        {% if klient.card and not klient.card.is_active %}
+            <li>Twoja karta klienta jest nieaktywna.
+                <a href="{% url dshop.main.views.activateCard %}">Aktywuj kartę</a> aby zbierać punkty Optio.
+            </li>
+        {% endif %}
+    </ul>
+    
+
+    <form id="pwdform" class="base etop" action="." method="post">
+        <fieldset>
+            <input type="hidden" name="action" value="pwdchange"/>
+            <legend>Zmiana Hasła</legend>
+            <ul>
+                <li class="errors">{{ pwdForm.non_field_errors }}</li>
+                <li>
+                    {{ pwdForm.password.errors }}
+                    <label for="id_password">Nowe hasło:</label>
+                    {{ pwdForm.password }}
+                </li>
+                <li>
+                    {{ pwdForm.password2.errors }}
+                    <label for="id_password2">Powtórz hasło:</label>
+                    {{ pwdForm.password2 }}
+                </li>
+            </ul>
+            <div class="center">
+                <a class="button submit" href="#"><em></em><span></span>Zapisz</a>
+            </div>
+        </fieldset>
+    </form>
+
+
+    <table id="clientInfo" class="base text">
+        <thead>
+            <tr>
+                <th class="left"><em></em>Informacje o koncie</th>
+                <th class="right"><em></em></th>
+            </tr>
+        </thead>
+        <tr class="o">
+            <td class="o name">Email</td>
+            <td class="e">{{ client.email }}</td>
+        </tr>
+        <tr class="e">
+            <td class="o name">Numer klienta</td>
+            <td class="e">
+                {% if client.client_num %}
+                    {{ client.client_num }}
+                {% else %}
+                    Brak
+                {% endif %}
+            </td>
+        </tr>
+        <tr class="o">
+            <td class="o name">Karta klienta</td>
+            <td class="e">
+                {% if client.promo_card_active %}
+                    Aktywna
+                {% else %}
+                    Brak
+                {% endif %}
+            </td>
+        </tr>
+        <tr class="e">
+            <td class="o name">Punkty Optio</td>
+            <td class="e">{{ client.promo_points }}</td>
+        </tr>
+        <tr class="o">
+            <td class="o name">Termin płatności</td>
+            <td class="e">
+                {% if client.payment_deadline %}
+                    {{ client.payment_deadline }} dni
+                {% else %}
+                    Niedostępny<br/> <span>Zamawiasz u nas regularnie? <a href="{{ helpLinks.contact.url }}">Zapytaj o termin płatności</a>.</span>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+
+    {% if client.profile_complete %}
+    <form id="profileForm" class="base etop ebottom legend" action="." method="post">
+            {% include "include/myprofile_form.html" %}
+        <fieldset>
+            <input type="hidden" name="action" value="datachange"/>
+            <a id="btn_save" class="button submit" href="#"><em></em><span></span>Zapisz</a>
+        </fieldset>
+    </form>
+    {% endif %}
+
+</div>
+{% endblock %}

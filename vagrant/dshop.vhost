@@ -1,0 +1,43 @@
+<VirtualHost *:80>
+    ServerAdmin it@optionall.pl
+    ServerName  optionall.pl
+    ServerAlias www.optionall.pl *.optionall.pl
+	
+    DocumentRoot /var/www/dshop/src/
+
+    ErrorLog /var/log/apache2/dshop-error.log
+    CustomLog /var/log/apache2/dshop-access.log combined
+
+    # Redirect to correct domain
+    RewriteEngine On
+    #RewriteCond     %{HTTP_HOST}            !^optionall.pl$
+    #RewriteRule     ^/(.*)$                 http://optionall.pl/$1                    [R=301,L]
+
+    <Location "/">
+        SetHandler python-program
+        PythonHandler django.core.handlers.modpython
+        SetEnv DJANGO_SETTINGS_MODULE dshop.settings
+        PythonDebug On
+        PythonPath "['/var/www/dshop/src/','/var/www/dshop/lib/']+ sys.path"
+        Header set Cache-Control "max-age=0, no-cache"
+    </Location>
+
+    <Location "/static">
+        SetHandler None
+        Header unset Last-Modified
+        Header set Cache-Control "public, max-age=3600"
+    </Location>
+
+    <Location ~ "/static/(css|js|img)">
+        SetHandler None
+        Header set Cache-Control "public, max-age=31536000"
+    </Location>
+
+    <Directory /var/www/dshop/src/>
+    	Options FollowSymlinks +Includes
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>
+

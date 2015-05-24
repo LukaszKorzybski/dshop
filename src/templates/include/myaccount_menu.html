@@ -1,0 +1,12 @@
+<ul class="horizMenu">
+    <li {% ifequal menu "myaccount" %}class="active"{% endifequal %}>
+        <a href="{% url dshop.main.views.myAccount %}"><em class="left"></em><span></span>Mój profil</a>
+    </li>
+    <li {% ifequal menu "myorders" %}class="active"{% endifequal %}>
+        <a href="{% url dshop.main.views.myOrders %}"><span></span>Moje zamówienia</a>
+    </li>
+    <li {% ifequal menu "mydiscounts" %}class="active"{% endifequal %}>
+        <a href="{% url dshop.main.views.myDiscounts %}"><em class="right"></em><span></span>Moje rabaty</a>
+    </li>
+</ul>
+<div id="menuClear" class="clear"></div>

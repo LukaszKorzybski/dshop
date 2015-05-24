@@ -1,0 +1,29 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Dziękujemy za rejestrację - Optionall.pl{% endblock %}
+{% block pdivClass %}thankyou{% endblock %}
+
+{% block content %}
+    <div class="section stop text">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        
+        <h1>Dziękujemy za rejestrację!</h1>
+        
+        <ul class="infoBox">
+            <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+            <div class="icon"></div>
+            <li>
+                Na adres {{ email }} został wysłany email aktywacyjny.
+            </li>
+            <li>
+                Aby dokonać aktywacji konta kliknij link, który otrzymałeś w emailu. Po dokonaniu aktywacji
+                zostaniesz automatycznie zalogowany do sklepu.
+            </li>
+            <li>
+                W razie jakichkolwiek problemów prosimy o <a href="{{ helpLinks.contact.url }}">kontakt z obsługą sklepu</a>.
+            </li>
+        </ul>
+
+        <p>Możesz teraz zamknąć tę stronę lub <a href="{% url dshop.main.views.mainpage %}">powrócić do sklepu</a>.</p>
+    </div>
+{% endblock %}

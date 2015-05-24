@@ -1,0 +1,19 @@
+{% extends "base_nonav.html" %}
+{% load utils %}
+
+{% block title %}Zamówienie nr {{ order.number }} - Optionall.pl{% endblock %}
+{% block pdivClass %}myOrder{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    
+    <h1>Zamówienie nr {{ order.number }}</h1>
+
+    {% include "include/myaccount_menu.html" %}
+
+    <a id="backlink" class="intext" href="{% url dshop-myorders-year year %}">Powrót do listy zamówień</a>
+
+    {% include "include/order.html" %}
+</div>
+{% endblock %}

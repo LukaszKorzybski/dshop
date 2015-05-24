@@ -1,0 +1,141 @@
+{% extends "include/base_cart.html" %}
+{% load utils %}
+
+{% block mainClass %}order{% endblock %}
+
+{% block clearCartAction %}{% endblock %}
+
+{% block messagesExtra %}
+    {% if newCourier %}
+        <li>
+            Sposób dostawy został automatycznie zmieniony na {{ newCourier }}
+        </li>
+    {% endif %}
+{% endblock %}
+{% block messagesExtraAfter %}
+    {% if client.promo_card_active %}
+        <li>Po zrealizowaniu zamówienia do Twojego konta zostanie doliczonych {{ order.promo_points }} punktów Optio.</li>
+    {% endif %}
+{% endblock %}
+{% block colorMessage %}{% endblock %}
+
+{% block c1 %}zamówienia{% endblock %}
+{% block c2 %}zamówienia{% endblock %}
+{% block c3 %}zamówienia{% endblock %}
+{% block t1 %}wynosi{% endblock %}
+{% block t2 %}pokrywamy{% endblock %}
+
+
+{% block top %}
+    <ul class="params">
+        <li id="reciever">
+            <p>Odbiorca</p>
+            {% with order.shipment as addr %}
+                <ul>
+                    <li>{{ addr.name }}</li>
+                    <li>{{ addr.street }} {{ addr.street_no }}</li>
+                    <li>{{ addr.code }} {{ addr.town }}</li>
+                </ul>
+            {% endwith %}
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block extraActions %}
+    <li id="courier">
+        <strong>Wybierz sposób dostawy</strong>
+        <form id="courierForm" action="." method="post" class="hidden">
+            <fieldset>
+                <input type="hidden" name="action"/>
+                <input type="hidden" name="courier"/>
+            </fieldset>
+        </form>
+        <a id="courierSel" class="button small select">
+            <em></em><span></span><em class="s"></em>
+            <dfn>{{ order.shipment.shipper_name }}</dfn>
+        </a>
+        <div id="couriers" class="dropdown hidden">
+            <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+            <ul>
+                {% for c in couriers %}
+                    <li class="option {% if c.banned %}disabled{% endif %}{% if forloop.last %} last{% endif %}">
+                        <div class="icon">
+                            <em class="{{ c.shipper.category }}"></em>
+                        </div>
+                        <div class="info">
+                            <strong class="display">{{ c.shipper.name }}</strong><br/>
+                            <span class="hidden value">{{ c.shipper.name }}</span>
+                            {% if not c.banned %}
+                                {{ c.discount_gross|money }} brutto
+                                {% if c.is_discount %}
+                                    <br/>
+                                    <em class="oldprice">(przed rabatem: {{ c.gross|money }})</em>
+                                {% endif %}
+                            {% endif %}
+
+                            {% if c.banned %}
+                                <em>
+                                    Niedostępny
+                                    {% ifequal c.ban_reason "W" %}
+                                        (waga przekracza {{ c.shipper.max_weight|number:"-2" }} kg)
+                                    {% else %}
+                                        z powodu ograniczeń w transporcie.<br/>
+                                        <a class="intext new-window" href="{{ helpLinks.shipping.url }}" title="Wyświetl informacje o dostawie">Więcej informacji</a>
+                                    {% endifequal %}
+                                </em>
+                            {% endif %}
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </li>
+{% endblock %}
+
+
+{% block items %}
+    {{ block.super }}
+    {% include "include/order_shipment_item.html" %}
+{% endblock %}
+
+{% block moreActions %}
+    <div id="notes" class="dropdown">
+        <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+        <strong>Uwagi do zamówienia</strong>
+        <div class="notes-cnt{% if not order.uwagi %} empty{% endif %}">
+            {{ order.comments|linebreaksbr }}
+        </div>
+        <p>
+            <a href="#" class="intext">{% if order.comments %}zmień{% else %}dodaj uwagi{% endif %}</a>
+        </p>
+        <div class="hidden notes-bckp">{{ order.comments|linebreaksbr }}</div>
+    </div>
+
+    <ul id="moreActions">
+        <li class="first">
+            <a class="button" title="Przejdź do wyboru formy płatności" href="{% url dshop.main.views.newOrderPayment order.id %}"><em></em><span></span>Do płatności</a>
+        </li>
+        <li>
+            <a class="button minor" href="{{ return_url }}"><em></em><span></span>Kontynuuj zakupy</a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block fboxWindows %}
+    {{ block.super }}
+    
+    <div id="fboxNotes">
+        <h2>Podaj uwagi do zamówienia</h2>
+        <form action="" class="base etop ebottom">
+            <fieldset class="first">
+                <ul>
+                    {{ notesForm.as_ul }}
+                </ul>
+            </fieldset>
+        </form>
+        <p class="clear"></p>
+    </div>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "base_nonav.html" %}
+{% load utils %}
+
+{% block title %}Nowe zamówienie - Optionall.pl{% endblock %}
+{% block pdivClass %}neworderPayment{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dshop.page.NewOrderPayment();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    <h1>Nowe zamówienie</h1>
+
+    {% include "include/new_order_menu.html" %}
+
+    <ul class="infoBox text">
+        <li class="ic">
+            <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+            <div class="icon"></div>
+        </li>
+
+        <li>
+            <strong>Wybierz formę płatności.</strong> Po kliknięciu 'kupuję' Twoje zamówienie zostanie złożone.
+        </li>
+        {% if paymentFailed %}
+            <li class="error">
+                <strong>Zamówienie zostało złożone jednak płatność online nie powiodła się.</strong>
+                Spróbuj ponownie zapłacic online lub wybierz inną formę płatności i kliknij 'dalej'.
+            </li>
+        {% endif %}
+    </ul>
+
+    <form id="paymentForm" action="." method="post">
+        <input type="hidden" name="paymentFailed" value="{{ paymentFailed|yesno:"1,0" }}" />
+        
+        <ul class="payments">
+            <li id="li_online">
+                <em></em>
+                <input id="id_online" type="radio" name="payment" value="ON"/>
+                <label for="id_online">Płacę online przez Dotpay</label>
+                <p>
+                   Wybierz jeśli chcesz zapłacić <b>online</b>.
+                   Po kliknięciu 'kupuję' zostaniesz przeniesiony na bezpieczne strony
+                   Dotpay.pl gdzie będziesz mógł dokonać płatności kartą lub przelewem online.
+                </p>
+            </li>
+            <li id="li_transfer" class="active">
+                <em></em>
+                <input checked="checked" id="id_przelew" type="radio" name="payment" value="TR"/>
+                <label for="id_przelew">Płacę przelewem (przedpłata)</label>
+                <p>
+                   Przedpłata na konto bankowe. Informacje potrzebne do wykonania przelewu
+                   znajdziesz w podsumowaniu zamówienia. Zostaną one także wysłane do Ciebie
+                   mailem, razem z informacją o złożonym zamówieniu.
+                </p>
+            </li>
+            <li id="li_cash" {% if not courier.cash_on_delivery %}class="disabled"{% endif %}>
+                <em></em>
+                <input id="id_odbior" type="radio" name="payment" value="CA"/>
+                <label for="id_odbior">
+                    Płacę przy odbiorze
+                    {% if courier.cash_on_delivery and courier.cash_on_delivery_paid %}
+                        <span>(+{{ courier.cash_on_delivery_gross|money }} brutto do kosztu transportu)</span>
+                    {% endif %}
+                </label>
+                
+                <p>
+                   Zapłacisz za towar naszemu kurierowi, przy jego odbiorze.
+                </p>
+            </li>
+
+            {% if client.has_payment_deadline %}
+                <li id="li_time">
+                    <em></em>
+                    <input id="id_termin" type="radio" name="payment" value="DE"/>
+                    <label for="id_termin">Termin płatności {{ client.payment_deadline }} dni</label>
+                    <p>
+                        Za zamówienie zapłacisz w terminie {{ client.payment_deadline }} dni od daty realizacji.
+                    </p>
+                </li>
+            {% else %}
+                <li id="li_time" class="disabled">
+                    <em></em>
+                    <input id="id_termin" disabled="disabled" type="radio" name="payment" value="DE"/>
+                    <label for="id_termin">Termin płatności</label> <dfn>(Opcja nieaktywna)</dfn>
+                    <p>
+                        Za zamówienie zapłacisz w ustalonym terminie od daty realizacji.
+                        Zamawiasz u nas regularnie? <a class="new-window intext" href="{{ helpLinks.contact.url }}">Zapytaj o termin płatności</a>.
+                    </p>
+                </li>
+            {% endif %}
+        </ul>
+    </form>
+
+    <ul id="actions">
+        <li>
+            {% if paymentFailed %}
+                <a id="buyBtn" class="button" href="#"><em></em><span></span>Dalej</a>
+            {% else %}
+                <a id="buyBtn" class="button" href="#"><em></em><span></span>Kupuję</a>
+            {% endif %}
+        </li>
+    </ul>
+    <div id="actClear" class="clear"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "email/base.txt" %}
+
+{% block content %}
+Twoje zamówienie nr {{ order.number }}, zostało anulowane.
+
+_______________________
+Podsumowanie zamówienia
+-----------------------
+{% include "email/order.txt" %}
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load utils %}
+
+{% block title %}Producenci - Sklep Optionall.pl{% endblock %}
+{% block pdivClass %}producers{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+
+    <h1>Producenci</h1>
+
+    {% regroup prods1 by first_letter as names1_list %}
+    <ul class="prods">
+    {% for name in names1_list %}
+        <li>
+            <strong>{{ name.grouper }}</strong>
+            <ul>
+            {% for prod in name.list %}
+                <li><a href="{{ prod.get_absolute_url }}">{{ prod.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% regroup prods2 by first_letter as names2_list %}
+    <ul class="prods">
+    {% for name in names2_list %}
+        <li>
+            <strong>{{ name.grouper }}</strong>
+            <ul>
+            {% for prod in name.list %}
+                <li><a href="{{ prod.get_absolute_url }}">{{ prod.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% regroup prods3 by first_letter as names3_list %}
+    <ul class="prods">
+    {% for name in names3_list %}
+        <li>
+            <strong>{{ name.grouper }}</strong>
+            <ul>
+            {% for prod in name.list %}
+                <li><a href="{{ prod.get_absolute_url }}">{{ prod.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <ul class="clear"></ul>
+</div>
+{% endblock %}

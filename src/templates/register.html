@@ -1,0 +1,53 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Rejestracja - Optionall.pl{% endblock %}
+{% block pdivClass %}register{% endblock %}
+
+{% block content %}
+    <div class="section stop">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        
+        <h1 class="icon"><em></em>Załóż konto w Optionall.pl</h1>
+        <p class="shifted">
+            <strong>Zarejestruj się i dołącz do naszych klientów!</strong><br/>
+            Uzyskasz dostęp do akcji promocyjnych, rabatów, informacji o nowościach i promocjach.
+        </p>
+
+        <form action="." method="post" class="base bold">
+            <fieldset class="first">
+                <ul class="shifted">
+                    <li>
+                        {{ form.email.errors }}
+                        <label for="id_email">Email:</label>
+                        {{ form.email }}
+                        <dfn>Adres będzie Twoim identyfikatorem. Na niego również wyślemy email, którym dokonasz aktywacji konta.</dfn>
+                    </li>
+                    <li>
+                        {{ form.email2.errors }}
+                        <label for="id_email2">Powtórz email:</label>
+                        {{ form.email2 }}
+                    </li>
+                    <li>
+                        {{ form.password.errors }}
+                        <label for="id_password">Hasło:</label>
+                        {{ form.password }}
+                    </li>
+                    <li>
+                        {{ form.password2.errors }}
+                        <label for="id_password2">Powtórz hasło:</label>
+                        {{ form.password2 }}
+                    </li>
+                    <li class="checkbox">
+                        {{ form.newsletter.errors }}
+                        {{ form.newsletter }}
+                        <label for="id_newsletter">Chcę otrzymywać informacje o promocjach i nowościach w sklepie Optionall.pl</label>
+                    </li>
+                </ul>
+
+                <a id="do" href="#" class="button submit"><em></em><span></span>Załóż konto</a>                
+            </fieldset>
+        </form>
+
+        {% include "include/security_note.html" %}
+    </div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base_search.html" %}
+{% load utils dshop_utils %}
+
+{% block title %}{{ headTitle }} - Sklep Optionall.pl{% endblock %}
+{% block pdivClass %}articles{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dshop.page.Articles();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        
+        <h1 class="icon lined"><em></em>{{ title }}</h1>
+
+        {% if showGPath %}
+            {% include "include/articles_gpath.html" %}
+        {% endif %}
+
+        {% if not gtree.is_empty %}
+            <div class="gtree">
+                <nav role="navigation">
+                <ul class="first">
+                    {% ifequal view 'group' %}
+                        {% for g in gtree.children_by_name %}
+                        <li><a href="{% url articles-group g.group.id,g.group.slug %}"><span></span>{{ g.group.name }} <em>({{ g.count }})</em></a></li>
+                        {% endfor %}
+                    {% else %}
+                        {% ifequal view 'prod' %}
+                            {% for g in gtree.children_by_name %}
+                                <li><a href="{% url articles-prod-g producer.id,producer.slug,g.group.id,g.group.slug %}"><span></span>{{ g.group.name }} <em>({{ g.count }})</em></a></li>
+                            {% endfor %}
+                        {% else %}
+                            {% ifequal view 'new' %}
+                                {% for g in gtree.children_by_name %}
+                                    <li><a href="{% url articles-new-g g.group.id,g.group.slug %}"><span></span>{{ g.group.name }} <em>({{ g.count }})</em></a></li>
+                                {% endfor %}
+                            {% else %}
+                                {% ifequal view 'promo' %}
+                                    {% for g in gtree.children_by_name %}
+                                        <li><a href="{% url articles-promo-g g.group.id,g.group.slug %}"><span></span>{{ g.group.name }} <em>({{ g.count }})</em></a></li>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for g in gtree.children_by_name %}
+                                        <li><a href="{% url articles-mprod-g mprod.id,mprod.slug,g.group.id,g.group.slug %}"><span></span>{{ g.group.name }} <em>({{ g.count }})</em></a></li>
+                                    {% endfor %}
+                                {% endifequal %}
+                            {% endifequal %}
+                        {% endifequal %}
+                    {% endifequal %}
+                </ul>
+                </nav>
+            </div>
+        <div class="clear"></div>
+        {% endif %}
+    </div>
+
+    {% if articles.total_items %}
+        {% if not articles.onepage %}
+        <nav role="navigation" id="article-list" class="section paging">
+            <div class="corner tl"></div><div class="corner bl"></div>
+            {{ articles|paging:pagingPrefix|safe }}
+        </nav>
+        {% endif %}
+
+        <div class="section">
+            <div class="corner tl"></div><div class="corner bl"></div>
+
+            <ul class="articles">
+                {% for art in articles.items %}
+                    {% include "include/article_list.html" %}
+                {% endfor %}
+            </ul>
+        </div>
+        
+        {% if not articles.onepage %}
+        <nav role="navigation" class="section paging">
+            <div class="corner tl"></div><div class="corner bl"></div>
+            {{ articles|paging:pagingPrefix|safe }}
+        </nav>
+        {% endif %}
+    {% else %}
+        <div class="section">
+            <div class="corner tl"></div><div class="corner bl"></div>
+            Brak artykułów
+        </div>
+    {% endif %}
+
+    {% include "include/add2cart_form.html" %}
+    
+{% endblock %}

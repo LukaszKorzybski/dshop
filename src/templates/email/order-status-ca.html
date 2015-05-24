@@ -1,0 +1,10 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+    <h1>Twoje zamówienie nr {{ order.number }}, zostało anulowane.</h1>
+
+    <h2>Podsumowanie zamówienia</h2>
+    <div class="order locked">
+        {% include "email/order.html" %}
+    </div>
+{% endblock %}

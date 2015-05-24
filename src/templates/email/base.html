@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" dir="ltr" lang="pl">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
+        <meta content="pl" http-equiv="Content-Language"/>
+        <title>{{ title }}</title>
+        
+        <style type="text/css">
+
+            /* ----------------------- Resetting browsers defaults ---------------------- */
+
+            html, body, div, span, applet, object, iframe,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, abbr, acronym, address, big, cite, code,
+            del, dfn, em, font, img, ins, kbd, q, s, samp,
+            small, strike, strong, sub, sup, tt, var,
+            b, u, i, center,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend,
+            table, caption, tbody, tfoot, thead, tr, th, td {
+                margin: 0;
+                padding: 0;
+                outline: 0;
+                font-size: 100%;
+                vertical-align: baseline;
+                background: transparent;
+            }
+
+            ol, ul {
+                list-style-image: none;
+                list-style-position: outside;
+                list-style-type: none;
+            }
+            fieldset {
+                border: 0;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+
+
+            /* -------------------------- Main layout ----------------------- */
+
+            body {
+                margin: 0;
+                background-color: #ffffff;
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 13px;
+                color: #39322e;
+            }
+
+            #page {
+                width: 730px;
+                margin: 0 auto;
+                padding: 0 50px;
+            }
+
+            #top {
+                height: 130px;
+                font-size: 13px;
+                line-height: 13px;
+            }
+            #top img {
+                vertical-align: middle;
+            }
+
+            #msg {
+                line-height: 20px;
+                margin: 30px 0;
+                padding: 0 15px;
+            }
+
+            #foot {
+                border-top: 1px #e4e2da solid;
+                padding: 20px 0 0 15px;
+                height: 100px;
+                line-height: 16px;
+            }
+            #foot td {
+                font-size: 11px;
+                vertical-align: top;
+            }
+            #foot_1, #foot_2 {
+                padding-right: 70px;
+            }
+            #foot_2, #foot_3 {
+                border-left: 1px #e4e2da dotted;
+                padding-left: 30px;
+                margin-left: 70px;
+            }
+
+            /* ------------------------ Base elements ----------------------- */
+
+             h1 {
+                font-size: 20px;
+                margin: 0 0 20px 0;
+                color: #9e1711;
+                font-weight: normal;
+            }
+            h2 {
+                margin: 30px 0 10px 0;
+                font-size: 15px;
+                color: #695A4F;
+                font-weight: bold;
+            }
+            h2.major {
+                color: #9e1711;
+            }
+            h3 {
+                font-size: 14px;
+                font-weight: bold;
+                margin: 0 0 14px 0;
+                color: #695A4F;
+            }
+
+            a {
+                color: #9e1711;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #ee3329;
+            }
+
+            .text p {
+                margin: 15px 0;
+            }
+            .text a {
+                text-decoration: underline;
+            }
+            p.text {
+                margin: 15px 0;
+            }
+
+            table.base td {
+                padding: 10px;
+                vertical-align: middle;
+                border: 1px #E4E2DA solid;
+            }
+            table.base th {
+                padding: 10px;
+                vertical-align: middle;
+            }
+            table p {
+                margin: 0;
+            }
+
+            /* --------------------------- Cart  ---------------------------- */
+
+            form.cart {
+                margin: 30px 0 0 0;
+            }
+
+            table.params {
+                width: 550px;
+            }
+            table.params td {
+                vertical-align: top;
+            }
+
+            table.cart-items {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            table.cart-items a { text-decoration: none; }
+            table.cart-items td.artName {
+                color: #695A4F;
+            }
+            table.cart-items td.artName span.variant-all {
+                font-weight: normal;
+            }
+            table.cart-items div.count input {
+                width: 25px;
+                font-size: 12px;
+                padding: 8px 4px;
+                border: 1px solid #edeadf;
+                text-align: center;
+                background: #FFF;
+            }
+            table.cart-items td.unit {
+                text-align: center;
+            }
+            table.cart-items td.remove {
+                text-align: center;
+            }
+
+            table.cart-items th.lp {
+                width: 23px;
+            }
+            table.cart-items th.price {
+                width: 212px;
+            }
+            table.cart-items th.unit {
+                width: 30px;
+            }
+            table.cart-items th.remove {
+                width: 35px;
+            }
+
+            table.cart-items td.cnt {
+                width: 15px;
+                text-align: center;
+            }
+            table.cart-items td.price {
+                padding-left: 0;
+                line-height: 1.15em;
+            }
+            table.cart-items td.price div {
+                float: left;
+                padding-top: 2px;
+            }
+            table.cart-items td.price div.count {
+                padding: 0 8px;
+                font-weight: bold;
+                color: #695A4F;
+            }
+            table.cart-items div.uprice {
+                width: 75px;
+                text-align: right;
+            }
+            table.cart-items button.delete-btn {
+                width: 22px;
+                height: 22px;
+                padding: 0;
+                border: none;
+                background: url(../img/sprites.png) -129px -41px;
+            }
+            table.cart-items p.param span:hover {
+                cursor: pointer;
+            }
+            table.cart-items p.param a {
+                margin-left: 3px;
+                text-decoration: underline;
+            }
+
+
+            table.cart-items tr.fixed td.price {
+                padding-left: 150px;
+            }
+
+
+            table.cartSummary {
+                margin: 10px 0 10px auto;
+                width: 290px;
+                margin-top: 10px;
+            }
+            table.cartSummary th.n {
+                width: 90px;
+            }
+            table.cartSummary td.n {
+                color: #695A4F;
+            }
+            table.cartSummary tr.sum td {
+                padding-bottom: 15px;
+            }
+            table.cartSummary tr.sum strong {
+                font-size: 20px;
+                font-weight: normal;
+            }
+
+            /* --------------------- order (non-editable) ------------------- */
+
+            div.order #notes {
+                width: 350px;
+            }
+            div.order #notes div.notes-cnt {
+                font-size: 11px;
+                border-top: 1px dotted #E4E2DA;
+                padding: 5px 0 0 0;
+                margin: 5px 0 0 0;
+                color: #695A4F;
+            }
+
+            div.locked td.artName {
+                color: #695A4F;
+            }
+
+            div.locked table.cart-items div.count {
+                width: 45px;
+                padding-top: 10px;
+            }
+
+            div.locked table.cart-items tr.fixed td.price {
+                padding-left: 136px;
+            }
+
+            div.locked table.cart-items p.param span:hover {
+                cursor: auto;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <div id="page">
+            
+            <div id="top">
+                <img src="http://{{ HOST_NAME }}{{ MEDIA_URL }}img/mailing/optionall.png" alt="OPTIONALL | Z nami lakierowanie to proste zadanie" /><br />
+                <!--img src="http://{{ HOST_NAME }}{{ MEDIA_URL }}img/mailing/contacts.png" alt="Infolinia: 0 801 882 992 | Infolinia dla tel. komórkowych: 58 667 31 64" /-->
+            </div>
+
+
+            <div id="msg" class="text">
+                {% block content %}{% endblock %}
+            </div>
+            
+
+            <div id="foot">
+                <table>
+                    <tr>
+                        <td id="foot_1">
+                            <b>Perfekt</b><br />
+                            ul. Opata Hackiego 19<br />
+                            81-211 Gdynia<br />
+							Tel: 058 623 10 89<br />
+                            NIP: 586 006 06 36<br />
+                            E-mail: <a href="mailto:sklep@optionall.pl">sklep@optionall.pl</a>
+                        </td>
+                        <td id="foot_2">
+                            <b>Pomoc techniczna</b><br />
+                            Telefon: 058 623 10 89, wewn. 36<br />
+                            Telefon: 058 623 10 89, wewn. 35<br />
+                            E-mail: <a href="mailto:it@optionall.pl">it@optionall.pl</a>
+                        </td>
+                        <td id="foot_3">
+                            <b>Obsługa Partnerów Handlowych<br />
+                                Bartosz Charycki</b><br />
+                            Telefon: 058 623 10 89, wewn. 31<br />
+                            Kom.: 509 838 046<br />
+                            E-mail: <a href="mailto:bartosz.charycki@optionall.pl">bartosz.charycki@optionall.pl</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            
+        </div>
+
+    </body>
+</html>

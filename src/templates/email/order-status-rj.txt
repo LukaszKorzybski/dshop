@@ -1,0 +1,12 @@
+{% extends "email/base.txt" %}
+
+{% block content %}
+Z przykrością informujemy, że Twoje zamówienie nr {{ order.number }}, zostało
+odrzucone przez naszego kontrolera.
+
+_______________________
+Podsumowanie zamówienia
+-----------------------
+{% include "email/order.txt" %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "include/cart_item.html" %}
+{% load utils %}
+
+{% block count %}
+    <input type="text" value="{{ ek.qty|number:"-1" }}" name="qty-{{ ek.article_id }}"/>
+{% endblock %}
+
+{% block extraCols %}
+    <td class="o remove">
+        <button type="button" class="delete-btn"></button>
+    </td>
+{% endblock %}
+
+{% block params %}
+    {% if ek.param_value %}
+        <p class="param">
+            {{ ek.param_name_plural }}:<span> <span>{{ ek.param_value|firstline }}</span> <a class="major" href="#">zmień</a></span>
+        </p>
+        <span class="full-param hidden">{{ ek.param_value }}</span>
+    {% else %}
+        <p class="param">
+            {{ ek.param_name_plural }}: <span> <span></span> <a class="major" href="#">podaj</a></span>
+        </p>
+        <span class="full-param hidden"></span>
+    {% endif %}
+    <span class="param-name hidden">{{ ek.param_name }}</span>
+{% endblock %}

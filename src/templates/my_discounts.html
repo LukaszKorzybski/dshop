@@ -1,0 +1,67 @@
+{% extends "base_nonav.html" %}
+{% load utils %}
+
+{% block title %}Moje rabaty - Optionall.pl{% endblock %}
+{% block pdivClass %}myDiscounts{% endblock %}
+
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    
+    <h1>Moje konto</h1>
+
+    {% include "include/myaccount_menu.html" %}
+
+    <ul id="maininfo" class="infoBox text">
+        <li class="ic">
+            <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+            <div class="icon"></div>
+        </li>
+
+        {% if not discounts %}
+            <li>Chcesz otrzymać stałą zniżkę na produkt? <a href="{{ helpLinks.contact.url }}">Zadzwoń i spytaj o rabat</a>.</li>
+        {% endif %}
+        <li>Rabaty są automatycznie naliczane podczas dodawania produktu do koszyka gdy jesteś zalogowany.<br/>
+            Jeśli zalogujesz się dopiero podczas składania zamówienia, to zostaną naliczone automatycznie po zalogowaniu.
+        </li>
+    </ul>
+
+    {% if discounts %}
+        <table class="base">
+            <thead>
+                <tr>
+                    <th class="left"><em></em>Produkt</th>
+                    <th>Producent</th>
+                    <th>Cena wyjściowa</th>
+                    <th>Cena z rabatem</th>
+                    <th class="right"><em></em>Rabat w %</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for dis in discounts %}
+                <tr class="{% cycle 'o' 'e' %}">
+                    <td class="o">
+                        <strong><a class="articleName" href="{{ dis.shoparticle.get_absolute_url }}">{{dis.shoparticle.name }}</a></strong>
+                        {% if dis.shoparticle.variants %}
+                            {% if dis.cover_variants %}
+                                <br/><em>wszystkie warianty</em>
+                            {% else %}
+                                <br/><em>opakowanie: {{ dis.article.get_variant.variant }}</em>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="e">{{ dis.shoparticle.producer.name }}</td>
+                    <td class="o"><strong>{{ dis.orig_gross|money }}</strong><br/> <span class="net">{{ dis.orig_net|money }}</span></td>
+                    <td class="e"><strong>{{ dis.gross|money }}</strong><br/> <span class="net">{{ dis.net|money }}</span></td>
+                    <td class="o">{{ dis.percent|number:"-2" }}%</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="nodiscounts">Aktualnie nie posiadasz rabatów.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

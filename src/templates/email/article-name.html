@@ -1,0 +1,25 @@
+<td class="e artName">
+    {% block artName %}
+        {% if ek.article %}
+            <strong>
+                <a class="articleName" href="{{ ek.article.get_shoparticle.get_absolute_url }}">{{ ek.name }}</a>
+            </strong>
+        {% else %}
+            <strong>{{ ek.name }}</strong>
+        {% endif %}
+    {% endblock %}
+    {% if ek.variant %}
+        <br/>
+        <span class="variant-all">{{ ek.variants_name }}: <span class="variant">{{ ek.variant_name }}</span></span>
+    {% endif %}
+
+    {% if ek.param %}
+        {% block params %}
+            {% if ek.param_value %}
+                <p class="msg success param">{{ ek.param_name_plural }}: <span>{{ ek.param_value|linebreaksbr }}</span></p>
+            {% else %}
+                <p class="msg notice param">{{ ek.param_name_plural }}: <span>nie podano</span></p>
+            {% endif %}
+        {% endblock %}
+    {% endif %}
+</td>

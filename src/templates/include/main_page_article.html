@@ -1,0 +1,15 @@
+{% load utils %}
+
+<li class="{% if forloop.last %}last{% endif %}{% if forloop.first %} first{% endif %}">
+    <h3><a href="{{ art.get_absolute_url }}" title="{{ art.name }}">{{ art.name }}</a></h3>
+    <a href="{{ art.get_absolute_url }}" title="{{ art.name }}">
+        <img src="{{ art.main_photo.photo.extra_thumbnails.thumb }}" alt="{{ art.name }}"/>
+    </a>
+    {% if art.promotion.notNone and art.promotion.short_desc %}
+        <p>{{ art.promotion.short_desc|truncatewords:14 }}</p>
+    {% endif %}
+    {% if art.promotion.notNone %}
+        <p class="promo">Teraz {{ art.promotion.gross|money }} </p>
+    {% endif %}
+    <p class="clear"></p>
+</li>

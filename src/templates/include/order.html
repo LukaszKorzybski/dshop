@@ -1,0 +1,57 @@
+{% extends "include/base_cart.html" %}
+{% load utils dshop_utils %}
+
+{% block mainClass %}order locked{% endblock %}
+{% block messages %}{% endblock %}
+{% block fboxWindows %}{% endblock %}
+{% block actions %}{% endblock %}
+
+
+{% block top %}
+    <ul class="params">
+        {% with order.shipment as shipment %}
+        <li>
+            <strong>Odbiorca</strong>
+            {% with shipment as addr %}
+                <ul>
+                    <li>{{ addr.name }}</li>
+                    <li>{{ addr.street }} {{ addr.number }}</li>
+                    <li>{{ addr.code }} {{ addr.town }}</li>
+                </ul>
+            {% endwith %}
+        </li>
+        <li>
+            <strong>Sposób dostawy</strong><br/>
+            {{ shipment.shipper_name }}
+        </li>
+        <li>
+            <strong>Płatność</strong><br/>
+            {{ order.payment|order_payment }}
+        </li>
+        {% endwith %}
+    </ul>
+    <div class="clear"></div>
+{% endblock %}
+
+
+{% block items %}
+    {% for ek in order.item_set.all %}
+        <tr class="item {% cycle 'o' 'e' %}" id="item-{{ ek.article_id }}">
+            {% include "include/cart_item.html" %}
+        </tr>
+    {% endfor %}
+    {% include "include/order_shipment_item.html" %}
+{% endblock %}
+
+
+{% block moreActions %}
+    {% if order.comments %}
+    <div id="notes" class="dropdown">
+        <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+        <strong>Uwagi do zamówienia</strong>
+        <div class="notes-cnt locked">
+            {{ order.comments|linebreaksbr }}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

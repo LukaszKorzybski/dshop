@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load utils %}
+
+{% block title %}Aktualności - Optionall.pl{% endblock %}
+
+{% block content %}
+    <h1>Aktualności</h1>
+
+    <ul class="news">
+    {% for n in news %}
+        <li>
+            <h2>{{ n.title }}</h2>
+            <p>{{ n.created|date:"d F Y" }}</p>
+            <div class="content">
+                {% if n.content %}
+                    {{ n.content|safe }}
+                {% else %}
+                    {{ n.summary|safe }}
+                {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

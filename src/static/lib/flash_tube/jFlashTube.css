@@ -1,0 +1,55 @@
+div.flashTube .jftView {
+    float: left;
+    margin: 0 10px 0 0;
+    width:  420px;
+    height: 385px;
+    border: 1px #E4E2DA solid;
+    background: url(/static/img/player.png);
+}
+
+div.flashTube .jftCtrl {
+    position: relative;
+    width: 122px;
+    height: 385px;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px solid #E4E2DA;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+}
+div.flashTube .titles {
+    width: auto;
+}
+
+div.flashTube .jftCtrl * {
+    vertical-align: top;
+}
+
+div.flashTube .jftCtrl li {
+    position: relative;
+    margin: 5px 2px;
+    padding: 5px;
+    border-color: transparent;
+}
+
+div.flashTube .jftCtrl li img {
+    width: 90px;
+}
+
+div.flashTube .jftCtrl li.jftHover {
+    background-color: #f5f2e9;
+    cursor: pointer;
+}
+div.flashTube .jftCtrl li.jftHover a {
+    color: #9e1711;
+}
+
+div.flashTube .jftCtrl li div {
+    position: absolute;
+    top: 5px;
+    left: 100px;
+    overflow: hidden;
+    height: 70px;
+}

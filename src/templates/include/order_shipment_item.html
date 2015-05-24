@@ -1,0 +1,14 @@
+{% load utils %}
+
+<tr class="{% if order.item_count_even %}o{% else %}e{% endif %} item fixed">
+    <td class="o cnt">{{ order.item_count|add:"1" }}</td>
+    <td class="e artName">Koszt transportu</td>
+    <td class="o unit"></td>
+    <td class="e price">
+        {% with order.shipment as shipment %}
+            <strong>{{ shipment.discount_gross|money }}</strong><br/>
+            <span class="net">{{ shipment.discount_net|money }}</span>
+        {% endwith %}
+    </td>
+    <td class="o remove"></td>
+</tr>

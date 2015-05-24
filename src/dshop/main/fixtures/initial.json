@@ -1,0 +1,171 @@
+[
+    {
+        "model" : "main.Counter",
+        "pk" : 1,
+        "fields" : {
+            "name" : "orders-submitted",
+            "value" : 0
+        }
+    },
+    {
+        "model" : "main.Counter",
+        "pk" : 1,
+        "fields" : {
+            "name" : "orders-temp",
+            "value" : 0
+        }
+    },
+
+    {
+        "model" : "main.Company",
+        "pk" : 1,
+        "fields" : {
+            "name" : "Moja Firma",
+            "addr_street" : "Ulica 1",
+            "addr_town" : "Moje Miasto",
+            "addr_code" : "XX-XXX",
+            "account_bank" : "Nazwa Banku",
+            "account_no" : "Numer konta"
+        }
+    },
+
+    {
+        "model" : "main.MetaInfo",
+        "pk" : 1,
+        "fields" : {
+            "name" : "title",
+            "content" : "Default title",
+            "type" : "default"
+        }
+    },
+
+    {
+        "model" : "main.MetaInfo",
+        "pk" : 2,
+        "fields" : {
+            "name" : "description",
+            "content" : "Default description",
+            "type" : "default"
+        }
+    },
+
+    {
+        "model" : "main.MetaInfo",
+        "pk" : 3,
+        "fields" : {
+            "name" : "title",
+            "content" : "Main page title",
+            "type" : "mpage"
+        }
+    },
+
+    {
+        "model" : "main.MetaInfo",
+        "pk" : 4,
+        "fields" : {
+            "name" : "description",
+            "content" : "Main page description",
+            "type" : "mpage"
+        }
+    },
+
+    {
+        "model" : "main.MetaInfo",
+        "pk" : 5,
+        "fields" : {
+            "name" : "keywords",
+            "content" : "Main page keywords",
+            "type" : "mpage"
+        }
+    },
+
+    {
+        "model" : "main.MetaInfo",
+        "pk" : 6,
+        "fields" : {
+            "name" : "verify-v1",
+            "content" : "Google Web Tools verification key",
+            "type" : "extra"
+        }
+    },
+
+    {
+        "model" : "main.HelpLink",
+        "pk" : 1,
+        "fields" : {
+            "name" : "help",
+            "url"  : "/s,1/help/"
+        }
+    },
+
+    {
+        "model" : "main.HelpLink",
+        "pk" : 2,
+        "fields" : {
+            "name" : "about",
+            "url"  : "/s,2/about/"
+        }
+    },
+
+    {
+        "model" : "main.HelpLink",
+        "pk" : 3,
+        "fields" : {
+            "name" : "shipping",
+            "url"  : "/s,3/help/shipping/"
+        }
+    },
+
+    {
+        "model" : "main.HelpLink",
+        "pk" : 4,
+        "fields" : {
+            "name" : "colors",
+            "url"  : "/s,4/help/colors/"
+        }
+    },
+
+    {
+        "model" : "main.HelpLink",
+        "pk" : 5,
+        "fields" : {
+            "name" : "contact",
+            "url"  : "/s,5/help/contact/"
+        }
+    },
+
+    {
+        "model" : "main.HelpLink",
+        "pk" : 6,
+        "fields" : {
+            "name" : "discount_points",
+            "url"  : "/s,6/help/discount-points/"
+        }
+    },
+
+    {
+        "model" : "main.StaticPage",
+        "pk" : 1,
+        "fields" : {
+            "title" : "Help",
+            "lft" : 1,
+            "rght" : 2,
+            "tree_id" : 1,
+            "level" : 0,
+            "order" : 1
+        }
+    },
+
+    {
+        "model" : "main.StaticPage",
+        "pk" : 2,
+        "fields" : {
+            "title" : "About",
+            "lft" : 1,
+            "rght" : 2,
+            "tree_id" : 2,
+            "level" : 0,
+            "order" : 1
+        }
+    }
+]

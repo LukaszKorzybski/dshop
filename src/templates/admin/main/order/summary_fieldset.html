@@ -1,0 +1,32 @@
+{% load utils %}
+<fieldset class="module aligned summary">
+    <h2>Wartość zamówienia</h2>
+
+    {% if original.is_discount %}
+        <div class="form-row sum_discount">
+            <div>
+                <label>Wartość po obniżkach:</label>
+                <span class="readonly"><strong>{{ original.discount_gross|money }}</strong> / {{ original.discount_net|money }}</span>
+            </div>
+        </div>
+        <div class="form-row sum_orig">
+            <div>
+                <label>Wartość przed obniżkami:</label>
+                <span class="readonly"><strong>{{ original.orig_gross|money }}</strong> / {{ original.orig_net|money }}</span>
+            </div>
+        </div>
+        <div class="form-row sum_savings">
+            <div>
+                <label>Oszczędność:</label>
+                <span class="readonly"><strong>{{ original.savings_gross|money }}</strong> / {{ original.savings_net|money }}</span>
+            </div>
+        </div>
+    {% else %}
+        <div class="form-row sum_discount">
+            <div>
+                <label>Wartość:</label>
+                <span class="readonly"><strong>{{ original.orig_gross|money }}</strong> / {{ original.orig_net|money }}</span>
+            </div>
+        </div>
+    {% endif %}
+</fieldset>

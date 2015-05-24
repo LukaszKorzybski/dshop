@@ -1,0 +1,12 @@
+
+#p.neworderSummary table.cart-items {
+    margin-top: 30px;
+}
+
+#p.article #photo-choose img {
+    filter: alpha(opacity=60);
+}
+#p.article #photo-choose a.active img,
+#p.article #photo-choose a:hover img {
+    filter: alpha(opacity=100);
+}

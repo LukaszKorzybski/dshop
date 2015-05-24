@@ -1,0 +1,37 @@
+#ft_form {
+	max-width: 534px;
+	_width: 534px;
+}
+
+#toolbar {
+	margin-top: 1em;
+	text-align: right;
+	padding-right: 62px;
+}
+
+#videos {
+	height: 350px;
+	overflow-y: scroll;
+	margin: 0;
+}
+
+#actions {
+	margin-top: 1em;
+}
+
+ul {
+	list-style-type: none;
+}
+
+li {
+	margin: 0.5em 0;
+}
+
+li label {
+	float: left;
+	width: 30px;
+}
+
+li input {
+	width: 40em;
+}

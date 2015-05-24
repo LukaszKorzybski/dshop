@@ -1,0 +1,14 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Jesteś już zalogowany - Optionall.pl{% endblock %}
+{% block pdivClass %}alreadyLogged{% endblock %}
+
+{% block content %}
+<div class="section stop text">
+    <div class="corner tl"></div><div class="corner bl"></div>
+
+    
+    Jesteś już zalogowany, Twoje konto jest aktywne.
+    <a href="{% url dshop.main.views.mainpage %}"><em></em><span></span>Powrót do głównej strony</a>
+</div>
+{% endblock %}

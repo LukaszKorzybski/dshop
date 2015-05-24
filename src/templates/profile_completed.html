@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Profil uzupełniony - Optionall.pl{% endblock %}
+
+{% block areHere %}profil{% endblock %}
+
+{% block mainNav %}{% endblock %}
+
+{% block content %}
+    <h1>Profil uzupełniony</h1>
+
+    <p class="msg success">Twoje dane zostały uzupełnione. W najbliższym czasie wyślemy do Ciebie rabatową kartę klienta.</p>
+
+    <p class="msg notice">Pamiętaj, że zawsze możesz zmodyfikować swoje dane na stronie
+    <a href="{% url dshop.main.views.myAccount %}">Moje Konto</a>.</p>
+    
+    <p>Dziękujemy i życzymy udanych zakupów! <a href="{% url dshop.main.views.mainpage %}">Powrót do sklepu</a></p>
+{% endblock %}

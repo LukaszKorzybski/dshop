@@ -1,0 +1,21 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+
+    <h1>Dziękujemy za rejestrację w Optionall.pl</h1>
+
+    <p>Aby aktywować konto i tym samym zakończyć rejestrację kliknij w poniższy link:</p>
+
+    <p>
+        <a href="{{ SSL_PROTO }}://{{ HOST_NAME }}{% url dshop.main.views.activate login=client.login,key=client.activation_code %}">
+            {{ SSL_PROTO }}://{{ HOST_NAME }}{% url dshop.main.views.activate login=client.login,key=client.activation_code %}
+        </a>
+    </p>
+
+    <p>Jeśli powyższy link nie działa, skopiuj go do przeglądarki sieci www.
+        Upewnij się, że adres został skopiowany dokładnie.</p>
+
+    <p>Pamiętaj, że w razie jakichkolwiek problemów lub niejasności zawsze możesz skontaktować
+        się z nami telefonicznie lub mailowo.</p>
+
+{% endblock %}

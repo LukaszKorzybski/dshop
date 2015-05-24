@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+{% load utils dshop_utils %}
+
+{% block title %}{{ article.name }} - Sklep Optionall.pl{% endblock %}
+{% block pdivClass %}article{% endblock %}
+{% block outer_description %}
+    {% if article.short_desc %}
+        <meta name="description" content="{{ article.short_desc|striptags }}">
+    {% endif %}
+{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var options = {
+                variants: {{ article.variants|yesno:"true,false" }},
+                init_variant: {% if diff_price %}{{ main_variant.id }}{% else %}null{% endif %}
+            };
+            {% if sys_param.opinions_active == "1" %}
+                options.opinions_active = {{ sys_param.opinions_active }};
+                options.opinions_allow_anonymous = {{ sys_param.opinions_allow_anonymous }};
+                options.avg_rating = {{ article.avg_rating|us_num }};
+                options.max_rating = {{ max_rating }};
+                options.opinions_form_invalid = {{ opinions_form_invalid|yesno:"true,false" }};
+            {% endif %}
+            dshop.page.Article(options);
+        });
+    </script>
+{% endblock %}
+
+{% block beforeMainCnt %}
+    <div class="section stop compact">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        
+        <ul id="artGpath">
+            <li>Powrót: </li>
+            {% for g in article.category_path %}
+                <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="{{ g.get_absolute_url }}"><span itemprop="title">{{ g.name }}</span></a> {% if not forloop.last %}&rsaquo;{% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+<article itemscope itemtype="http://schema.org/Product">
+<div class="section">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    <header>
+        <h1 itemprop="name">{{ article.name }}</h1>
+        <h2 itemprop="brand">{{ article.producer.name }}</h2>
+    </header>
+
+    <div id="photos">
+        <ul>
+        {% for p in photos %}
+            <li {% if forloop.first %}class="active"{% endif %}>
+                {% if p.large %}
+                    <a href="{{ p.photo.extra_thumbnails.large }}">
+                        <img itemprop="image" src="{{ p.photo.thumbnail }}" alt="{% if p.alt %}{{ p.alt }}{% else %}{{ article.name }}{% endif %}"/>
+                    </a>
+                {% else %}
+                    <img itemprop="image" src="{{ p.photo.thumbnail }}" alt="{% if p.alt %}{{ p.alt }}{% else %}{{ article.name }}{% endif %}"/>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+
+        {% if many_photos %}
+            <div id="photo-choose">
+            {% for p in photos %}
+                <a href="{{ p.photo.thumbnail }}" {% if forloop.first %}class="active"{% endif %}><img src="{{ p.photo.extra_thumbnails.sthumb }}"/></a>
+            {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div id="prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        {% if article.variants %}
+            <ul>
+                <li id="varName"><strong>Wybierz {{ article.variants_name }}:</strong></li>
+                <li>
+                    <a href="#" id="variantSel" class="button small select">
+                        <em></em><span></span><em class="s"></em>
+                        <dfn>{% if diff_price %}{{ main_variant.variant }}{% else %}Wybierz...{% endif %}</dfn>
+                    </a>
+                </li>
+            </ul>
+
+            
+            <div id="variants" class="dropdown hidden{% if diff_price %} diffPrice{% if article.quantity_variants %} qtyVars{% endif %}{% endif %}">
+                <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+
+                {% if diff_price %}
+                    {% if article.quantity_variants %}
+                        <p class="head unit">Cena za {{ article.variants_unit.name_accusative }}</p>
+                    {% endif %}
+                    <p class="head">Cena</p>
+                    <p class="clear"></p>
+                {% endif %}
+                <ul>
+                {% for v in article.sorted_variant_set %}
+                    {% with v.best_discount as discount %}
+                    <li id="var-{{ v.id }}" class="option{% if discount.notNone %} discount{% endif %}{% if forloop.last %} last{% endif %}">
+                        <p class="hidden exec_time">{{ v.real_exec_time|d_exectime:helpLinks.help.url|safe }}</p>
+                        
+                        {% if diff_price %}
+                            <div class="p">
+                                    <p class="total">
+                                        <span>{{ discount.gross|money }}</span><br/>
+                                        <em>{{ discount.net|money }}</em>
+                                    </p>
+                                {% if article.quantity_variants %}
+                                    <p class="perUnit">
+                                        <span>{{ discount.unit_gross|money }}</span><br/>
+                                        <em>{{ discount.unit_net|money }}</em>
+                                    </p>
+                                {% endif %}
+                                {% if discount.notNone %}
+                                <p class="hidden oldprice">
+                                    <span>{{ v.gross|money }}</span>
+                                    <em>{{ v.net|money }}</em>
+                                </p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        <div class="v">
+                            <strong class="display">{{ v.variant }}</strong>
+                            <span class="hidden value">{{ v.id }}</span>
+                            {% if diff_price %}
+                                {% if discount.is_promo %}
+                                    <br/><em>promocja</em>
+                                {% endif %}
+                                {% if discount.is_discount %}
+                                    <br/><em>masz rabat</em>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        
+                    </li>
+                    {% endwith %}
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <meta itemprop="itemCondition" content="new"> 
+        <meta itemprop="priceCurrency" content="PLN">
+
+        <ul class="clear" id="price">
+            {% with article.best_discount as best_discount %}
+                <li class="std{% if best_discount.notNone %} old{% endif %}">
+                    <strong {% if best_discount.isNone %}itemprop="price"{% endif %}>{{ article.gross|money }} brutto</strong><br/>
+                    <span>{{ article.net|money }} netto</span>
+                </li>
+                <li class="promo{% if best_discount.isNone %} hidden{% endif %}">
+                    <strong {% if best_discount.notNone %}itemprop="price"{% endif %}>{{ best_discount.gross|money }} brutto</strong><br/>
+                    <span>{{ best_discount.net|money }} netto</span>
+                </li>
+            {% endwith %}
+        </ul>
+
+        <form id="add2cart" method="post" action="{% url dshop.main.views.cart %}">
+            <fieldset>
+                <input type="hidden" name="action" value="add"/>
+                <input type="hidden" name="article" value="{{ article.id }}"/>
+                <input type="hidden" name="variant"/>
+
+                <a href="#" rel="nofollow" class="button"><em></em><span></span>Dodaj do koszyka</a>
+                <p>Ilość: <input name="qty" type="text" value="1"/> {{ article.unit.short }}</p>
+            </fieldset>
+        </form>
+
+        <p id="exec_time">
+            {% if article.real_exec_time.max == 1 %}
+                <link itemprop="availability" href="http://schema.org/InStock">
+            {% endif %}
+            <strong>Czas realizacji:</strong> <span>{{ article.real_exec_time|d_exectime:helpLinks.help.url|safe }}</span>
+        </p>
+    </div>
+
+    
+    <div id="extras">
+        {% with article.listed_attachments as attachments %}
+        {% if attachments %}
+            <strong>Pobierz pliki:</strong>
+            <ul id="files">
+                {% for att in attachments %}
+                    <li><img src="{{ att.type.icon.url }}" alt="typ dokumentu"><a class="new-window" href="{{ att.file.url }}">{{ att.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+
+        {% with article.recc_articles.all as recc_articles %}
+        {% if recc_articles %}
+            <strong>Do tego produktu polecamy:</strong>
+            <ul id="rec">
+                {% for art in recc_articles %}
+                    <li>
+                        <a itemprop="isRelatedTo" class="major" href="{{ art.get_absolute_url }}">{{ art.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+    
+    {% with article.filled_properties as properties %}
+    {% if properties %}
+        <table class="base vcompact" id="props">
+            <thead>
+                <tr>
+                    <th class="left"><em></em>Cechy produktu</th>
+                    <th class="right"><em></em></th>
+                </tr>
+            </thead>
+            {% for p in properties %}
+                <tr class="{% cycle 'o' 'e' %}">
+                    <td class="o">{{ p.property.prop.name }}</td>
+                    <td class="e">{{ p.value }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {% endwith %}
+    
+    <div class="clear"></div>
+    <div itemprop="description" id="description" class="tcontent">
+        {{ article.desc|safe }}
+    </div>
+</div>
+
+
+{% if sys_param.opinions_active == "1" %}
+    {% include "include/article_opinions.html" %}
+{% endif %}
+</article>
+{% endblock %}

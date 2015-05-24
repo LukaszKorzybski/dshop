@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Strona wygasła - Optionall.pl{% endblock %}
+{% block pdivClass %}pageExpired{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    
+    <h1>Strona wygasła</h1>
+    <ul class="infoBox text">
+        <li class="ic">
+            <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+            <div class="icon"></div>
+        </li>
+        
+        <li>Żądana przez Ciebie strona wygasła. Wygaśnięcie strony to zabezpieczenie przed ponownym
+            wykonaniem tej samej akcji.
+        </li>
+    </ul>
+    
+    <p>
+        <a class="intext" href="{% url dshop.main.views.mainpage %}">Powrót do głównej strony</a>
+    </p>
+</div>
+{% endblock %}

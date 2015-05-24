@@ -1,0 +1,191 @@
+/* ----------------------- Resetting browsers defaults ---------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+ol, ul {
+	list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* ---------------------------- Base elements ------------------------------- */
+
+body {
+    font-size: 13px;
+    line-height: 1.45em;
+    font-family: Arial, sans-serif;
+    color: #39322E;
+}
+
+h1 {
+    font-size: 20px;
+    margin: 0 0 20px 0;
+    color: #9e1711;
+    font-weight: normal;
+}
+h1.space {
+   margin-bottom: 40px;
+}
+h1.lined,
+h2.lined {
+    padding-bottom: 13px;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #e4e2da;
+}
+h2 {
+    font-size: 15px;
+    margin: 0 0 20px 0;
+    color: #695A4F;
+    font-weight: bold;
+}
+h2.h1 {
+    font-size: 20px;
+    margin: 0 0 20px 0;
+    color: #9e1711;
+    font-weight: normal;
+}
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 14px 0;
+    color: #695A4F;
+}
+h4 {
+    font-size: 13px;
+    font-weight: normal;
+    padding-bottom: 0.2em;
+}
+h5 {
+    font-size: 13px;
+    font-weight: bold;
+    padding-bottom: 0.2em;
+}
+h1, h2, h3, h4, h5 {
+    line-height: 1.25em;
+}
+h1.first, h2.first, h3.first {
+    margin-top: 0;
+}
+
+h1.icon em,
+h2.icon em {
+    float: left;
+    width: 29px;
+    height: 28px;
+    margin-right: 10px;
+}
+h1.rightIcon em,
+h2.rightIcon em {
+    float: right;
+    width: 29px;
+    height: 28px;
+}
+
+a {
+    /*color: #4E4844;*/
+    color: #695A4F;
+    text-decoration: none;
+}
+a:hover {
+    color: #9E1711;
+    text-decoration: none;
+}
+
+a.major {
+    color: #9E1711;
+}
+a.major:hover {
+    /*color: #4E4844;*/
+    color: #695a4f;
+}
+
+a.intext {
+    text-decoration: underline;
+}
+a.intext:hover {
+    text-decoration: underline;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ------------------------------ Content ----------------------------------- */
+
+.tcontent h2 {
+    margin: 25px 0 5px 0;
+}
+.tcontent h3 {
+    margin: 15px 0 5px 0;
+}
+.tcontent h4 {
+    margin: 15px 0 5px 0;
+}
+
+.tcontent p {
+    margin-bottom: 15px;
+}
+
+.tcontent ul,
+.tcontent ol {
+    margin: 15px 15px;
+}
+.tcontent li {
+    padding-left: 5px;
+    margin: 5px 0;
+}
+.tcontent ul li {
+    list-style: disc;
+}
+.tcontent ol li {
+    list-style: decimal;
+}
+
+.tcontent a {
+    text-decoration: underline;
+}
+.tcontent li > a {
+    text-decoration: none;
+}
+
+.tcontent table {
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.tcontent td,
+.tcontent th {
+    padding: 5px 10px;
+    border: 1px solid #E4E2DA;
+}
+
+.tcontent table.no-border td {
+    border: none;
+}
+
+body.sdesc {
+    font-size: 11px;
+}

@@ -1,0 +1,1 @@
+CREATE INDEX main_shoparticle_r_category_path ON main_shoparticle (r_category_path varchar_pattern_ops);

@@ -1,0 +1,10 @@
+
+{% block content %}{% endblock %}
+
+________________________________________________________________________________
+Perfekt                                    Obsługa Partnerów Handlowych
+ul. Opata Hackiego 19                      Bartosz Charycki
+81-211 Gdynia                              Telefon: 058 623 10 89, wewn. 31
+NIP: 586-006-06-36                         Kom.: 509 838 046
+E-mail: sklep@optionall.pl                 E-mail: bartosz.charycki@optionall.pl
+--------------------------------------------------------------------------------

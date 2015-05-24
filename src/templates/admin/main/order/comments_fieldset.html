@@ -1,0 +1,10 @@
+{% load utils %}
+<fieldset class="module aligned comments">
+    <h2>Uwagi od klienta</h2>
+
+    <div class="form-row comments">
+        <div>
+            <label>Uwagi:</label> <div>{{ original.comments|linebreaks }}</div>
+        </div>
+    </div>
+</fieldset>

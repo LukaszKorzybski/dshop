@@ -1,0 +1,29 @@
+{% load utils dshop_utils %}
+{% with order.shipment as shipment %}
+
+Sposób dostawy:
+{{ shipment.shipper_name }}
+{% endwith %}
+
+Płatność:
+{{ order.payment|order_payment }}
+
+{% for item in baseCart.item_set.all %}
+-----------------------------------------------------------
+{{ item.name }}
+{% if item.variant %}{{ item.variants_name }}: {{ item.variant_name }}{% endif %}
+{% if item.param %}{{ item.param_name_plural }}:
+{{ item.param_value }}
+{% endif %}
+ilość: {{ item.qty|number:"-1" }} ({{ item.unit_short }})
+brutto: {{ item.sum_discount_gross|money }} (netto: {{ item.sum_discount_net|money }})
+{% endfor %}
+-----------------------------------------------------------
+Koszt transportu
+{% with order.shipment as shipment %}brutto: {{ shipment.discount_gross|money }} (netto: {{ shipment.discount_net|money }}){% endwith %}
+-----------------------------------------------------------
+
+
+Przewidywany czas realizacji zamówienia: {{ baseCart.exec_time|d_exectime|safe }}
+
+Razem brutto: {{ order.discount_gross|money }} (netto: {{ order.discount_net|money }})}

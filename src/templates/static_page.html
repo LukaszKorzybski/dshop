@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ spage.title }} - Optionall.pl{% endblock %}
+{% block pdivClass %}spage{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    
+    <h1>{{ spage.title }}</h1>
+
+    <div class="static tcontent">
+
+        {% if spage.parent and spage.backlink %}
+            <h2>Powrót do: <a href="{{ spage.parent.get_absolute_url }}">{{ spage.parent.title }}</a></h2>
+        {% endif %}
+
+        {% if spage.display_index %}
+            <ul id="index">
+            {% for sp in spage.get_root.get_children %}
+                {% if sp.public %}
+                    <li><a href="{{ sp.get_absolute_url }}">{{ sp.title }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+        {{ spage.spagecontent.content|safe }}
+    </div>
+</div>
+{% endblock %}

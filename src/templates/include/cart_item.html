@@ -1,0 +1,45 @@
+{% load utils %}
+
+    <td class="o cnt">{{ forloop.counter }}</td>
+    <td class="e artName">
+        {% block artName %}
+            {% if ek.article %}
+                <strong><a class="articleName" href="{{ ek.article.get_shoparticle.get_absolute_url }}">{{ ek.name }}</a></strong>
+            {% else %}
+                <strong>{{ ek.name }}</strong>
+            {% endif %}
+        {% endblock %}
+        {% if ek.variant %}
+            <br/>
+            <span>{{ ek.variants_name }}: <span class="variant">{{ ek.variant_name }}</span></span>
+        {% endif %}
+        
+        {% if ek.param %}
+            {% block params %}
+                {% if ek.param_value %}
+                    <p class="msg success param">{{ ek.param_name_plural }}: <span>{{ ek.param_value|firstline }}</span></p>
+                    <span class="full-param hidden">{{ ek.param_value }}</span>
+                {% else %}
+                    <p class="msg notice param">{{ ek.param_name_plural }}: <span>nie podano</span></p>
+                    <span class="full-param hidden"></span>
+                {% endif %}
+            {% endblock %}
+        {% endif %}
+    </td>
+    <td class="o unit">{{ ek.unit_short }}</td>
+    <td class="e price">
+        <div class="uprice">
+            <span {% if ek.is_discount %}class="promo"{% endif %}>{{ ek.discount_gross|money }}</span><br/>
+            <span class="net">{{ ek.discount_net|money }}</span>
+        </div>
+        <div class="count">
+            &times; {% block count %}{{ ek.qty|number:"-1" }}{% endblock %} =
+        </div>
+        <div class="sumprice">
+            <strong {% if ek.is_discount %}class="promo"{% endif %}>{{ ek.sum_discount_gross|money }}</strong><br/>
+            <span class="net">{{ ek.sum_discount_net|money }}</span>
+        </div>
+    </td>
+    {% block extraCols %}
+        <td class="o remove"></td>
+    {% endblock %}

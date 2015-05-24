@@ -1,0 +1,191 @@
+[
+    {
+        "model" : "main.SystemParam",
+        "pk" : 1,
+        "fields" : {
+            "key" : "adslider_first",
+            "value" : "0",
+            "help_text" : "Numer animacji na głównym bannerze, która ma być wyświetlana jako pierwsza."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 2,
+        "fields" : {
+            "key" : "adslider_delay",
+            "value" : "7000",
+            "help_text" : "Ile czasu (w milisekundach) ma być wyświetlana pojedyńcza reklama statyczna na głównym banerze."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 3,
+        "fields" : {
+            "key" : "media_thumb_quality",
+            "value" : "85",
+            "help_text" : "Jakość miniatur zdjęć produktów na sklepie (1-100) ."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 4,
+        "fields" : {
+            "key" : "media_photo_quality",
+            "value" : "90",
+            "help_text" : "Jakość zdjęć produktów na sklepie (1-100)."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 5,
+        "fields" : {
+            "key" : "media_large_photo_quality",
+            "value" : "90",
+            "help_text" : "Jakość dużych zdjęć produktów na sklepie (1-100)."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 6,
+        "fields" : {
+            "key" : "delivery_half_refund_level",
+            "value" : "500",
+            "help_text" : "Kwota zamówienia brutto od której obowiązuje 50% upustu na transport."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 7,
+        "fields" : {
+            "key" : "delivery_full_refund_level",
+            "value" : "1000",
+            "help_text" : "Kwota zamówienia brutto od której obowiązuje 100% upustu na transport."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 8,
+        "fields" : {
+            "key" : "opinions_active",
+            "value" : "1",
+            "help_text" : "Moduł opinii o produktach - 1/0 (Włączony/Wyłączony)."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 9,
+        "fields" : {
+            "key" : "opinions_allow_anonymous",
+            "value" : "1",
+            "help_text" : "Osoby niezalogowane mogą pisać opinie - 1/0 (Tak/Nie)."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 10,
+        "fields" : {
+            "key" : "opinions_captcha",
+            "value" : "0",
+            "help_text" : "Captcha w formularzu dodawania opinii o produkcie - 1/0 (Włączone/Wyłączone)."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 11,
+        "fields" : {
+            "key" : "opinions_abuse_reports",
+            "value" : "1",
+            "help_text" : "Możliwość zgłaszania nadużycia regulaminu przez opinię - 1/0 (Włączona/Wyłączona)."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 12,
+        "fields" : {
+            "key" : "opinions_max_rating",
+            "value" : "10",
+            "help_text" : "Maksymalna ocena produktu - od 3 do 10."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 13,
+        "fields" : {
+            "key" : "opinions_email_notif",
+            "value" : "1",
+            "help_text" : "Mail z prośbą o opinie podczas zamykania zamówienia - 1/0 (Tak/Nie)"
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 13,
+        "fields" : {
+            "key" : "opinions_page_size",
+            "value" : "3",
+            "help_text" : "Ilość opinii wyświetlanych na jednej stronie."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 14,
+        "fields" : {
+            "key" : "opinion_service",
+            "value" : "1",
+            "help_text" : "Integracja z serwisem opinii o sklepach - 1/0 (Tak/Nie)"
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 15,
+        "fields" : {
+            "key" : "opinion_service_name",
+            "value" : "Opineo",
+            "help_text" : "Nazwa serwisu z opiniami o sklepach."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 16,
+        "fields" : {
+            "key" : "opinion_service_url",
+            "value" : "",
+            "help_text" : "Adres do strony gdzie można dodać opinię o Twoim sklepie."
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 17,
+        "fields" : {
+            "key" : "contact_hotline",
+            "value" : "",
+            "help_text" : ""
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 18,
+        "fields" : {
+            "key" : "contact_skype",
+            "value" : "",
+            "help_text" : ""
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 19,
+        "fields" : {
+            "key" : "contact_email",
+            "value" : "",
+            "help_text" : ""
+        }
+    },
+    {
+        "model" : "main.SystemParam",
+        "pk" : 20,
+        "fields" : {
+            "key" : "contact_gg",
+            "value" : "",
+            "help_text" : ""
+        }
+    }
+]

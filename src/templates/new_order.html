@@ -1,0 +1,25 @@
+{% extends "base_nonav.html" %}
+{% load utils %}
+
+{% block title %}Nowe zamówienie - Optionall.pl{% endblock %}
+{% block pdivClass %}neworder{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dshop.page.NewOrderEdit({{ order.id }});
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="section stop">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        <h1>Nowe zamówienie</h1>
+
+        {% include "include/new_order_menu.html" %}
+        {% include "include/editable_order.html" %}
+        
+    </div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+
+    <ul class="column">
+        <li>
+            <p><a href="/new-admin/main/order/">Zamówienia</a></p>
+            {% if not user.get_profile.is_external %}
+            <p><a href="/new-admin/main/client/">Klienci</a></p>
+            <p><a href="/new-admin/main/clientdiscount/">Rabaty</a></p>
+            <p><a href="/new-admin/main/promotion/">Promocje</a></p>
+            {% endif %}
+        </li>
+        {% if not user.get_profile.is_external %}
+        <li>
+            <p><a href="/new-admin/main/shoparticle/">Produkty</a></p>
+            <p><a href="/new-admin/main/category/">Kategorie produktów</a></p>
+            <p><a href="/new-admin/main/specification/">Specyfikacje</a></p>
+            <p><a href="/new-admin/main/property/">Cechy</a></p>
+            <p><a href="/new-admin/main/articleparam/">Parametry produktów</a></p>
+            <p><a href="/new-admin/main/file/">Pliki</a></p>
+            
+        </li>
+        <li>
+            <p><a href="/new-admin/main/vatrate/">Stawki VAT</a></p>
+            <p><a href="/new-admin/main/unit/">Jednostki</a></p>
+            <p><a href="/new-admin/main/executiontime/">Czasy realizacji</a></p>
+            <p><a href="/new-admin/main/producer/">Producenci</a></p>
+            <p><a href="/new-admin/main/supplier/">Dostawcy</a></p>
+            <p><a href="/new-admin/main/shipper/">Spedytorzy</a></p>
+            <p><a href="/new-admin/main/metaproducer/">Meta producenci</a></p>
+            <p><a href="/new-admin/main/filetype/">Typy plików</a></p>
+        </li>
+        {% endif %}
+    </ul>
+    <ul class="column">
+        {% if not user.get_profile.is_external %}
+        <li>
+            <p><a href="/new-admin/main/staticpage/">Strony statyczne</a></p>
+            <p><a href="/new-admin/main/news/">Aktualności</a></p>
+            <p><a href="/new-admin/main/opinion/">Opinie o produktach</a></p>
+            <p><a href="/new-admin/main/mainpagead/">Reklamy na głównej stronie</a></p>
+        </li>
+        <li>
+            <p><a href="/new-admin/main/pagefragment/">Fragmenty stron</a></p>
+            <p><a href="/new-admin/main/additionallink/">Linki dodatkowe</a></p>
+            <p><a href="/new-admin/main/helplink/">Linki pomocy</a></p>
+            <p><a href="/new-admin/main/redirect/">Przekierowania adresów URL</a></p>
+        </li>
+        <li>
+            <p><a href="/new-admin/main/logentry/">Dziennik synchronizacji</a>
+            <p><a href="/new-admin/main/company/">Dane firmy</a></p>
+            <p><a href="/new-admin/auth/group/">Grupy</a></p>
+            <p><a href="/new-admin/auth/user/">Użytkownicy</a></p>
+            <p><a href="/new-admin/main/systemparam/">Parametry systemowe</a></p>
+            <p><a href="/new-admin/main/metainfo/">Meta informacje</a></p>
+        </li>
+        {% endif %}
+    </ul>
+    
+</div>
+{% endblock %}

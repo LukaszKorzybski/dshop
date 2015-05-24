@@ -1,0 +1,98 @@
+{% load utils dshop_utils %}
+
+{% block top %}
+    <table class="params">
+        <tr>
+            {% with order.shipment as shipment %}
+            <td>
+            </td>
+            <td>
+                <strong>Sposób dostawy</strong><br/>
+                {{ shipment.shipper_name }}
+            </td>
+            <td>
+                <strong>Płatność</strong><br/>
+                {{ order.payment|order_payment }}
+            </td>
+            {% endwith %}
+        </tr>
+    </table>
+{% endblock %}
+
+
+<form class="cart" action="." method="post">
+    <fieldset>
+    <table class="base hcompact cart-items">
+        <thead>
+            <tr>
+                <th class="lp left"><em></em></th>
+                <th>Produkt</th>
+                <th class="unit">j.m.</th>
+                <th class="price">Cena</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% block items %}
+                {% for ek in baseCart.item_set.all %}
+                    <tr class="item {% cycle 'o' 'e' %}" id="item-{{ ek.article_id }}">
+                        {% include "email/order-item.html" %}
+                    </tr>
+                {% endfor %}
+
+                <tr class="{% if order.item_count_even %}o{% else %}e{% endif %} item fixed">
+                    <td class="o cnt">{{ order.item_count|add:"1" }}</td>
+                    <td class="e artName">Koszt transportu</td>
+                    <td class="o unit"></td>
+                    <td class="e price">
+                        {% with order.shipment as shipment %}
+                            <strong>{{ shipment.discount_gross|money }}</strong><br/>
+                            <span class="net">{{ shipment.discount_net|money }}</span>
+                        {% endwith %}
+                    </td>
+                </tr>
+            {% endblock %}
+            
+        </tbody>
+    </table>
+
+    {% block info %}
+        <p class="text prepare-time">Przewidywany czas realizacji zamówienia: {{ baseCart.exec_time|d_exectime|safe }}</p>
+    {% endblock %}
+
+
+    {% block summary %}
+        <table class="cartSummary">
+            <tr><th class="n"></th><th></th></tr>
+            <tr class="sum">
+                <td class="n">Razem:</td>
+                <td>
+                    <strong>{{ baseCart.discount_gross|money }} brutto</strong><br/>
+                    <span class="net">{{ baseCart.discount_net|money }} netto</span>
+                </td>
+            </tr>
+            {% if baseCart.is_discount %}
+            <tr class="save">
+                <td class="n">Oszczędzasz:</td>
+                <td class="n">
+                    {{ baseCart.savings_gross|money }} ({{ baseCart.savings_net|money }} netto)
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+    {% endblock %}
+
+    
+    {% block moreActions %}
+        {% if order.comments %}
+        <div id="notes" class="dropdown">
+            <strong>Uwagi do zamówienia</strong>
+            <div class="notes-cnt locked">
+                {{ order.comments|linebreaksbr }}
+            </div>
+        </div>
+        {% endif %}
+    {% endblock %}
+
+    </fieldset>
+</form>

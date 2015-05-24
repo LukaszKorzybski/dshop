@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="news">
+	<p>
+		Witryna {{ cookie_domain|safe }} nie zbiera w sposób automatyczny żadnych informacji, z wyjątkiem informacji zawartych w plikach cookies. Pliki cookies (tzw. &bdquo;ciasteczka&rdquo;) to niewielkie informacje tekstowe, wysyłane przez serwer WWW i zapisywane po stronie użytkownika (zazwyczaj na twardym dysku). Domyślne parametry ciasteczek pozwalają na odczytanie informacji w nich zawartych jedynie serwerowi, który je utworzył. Ciasteczka są stosowane najczęściej w przypadku liczników, sond, sklepów internetowych, stron wymagających logowania, reklam i do monitorowania aktywności odwiedzających.
+	</p>
+	<br/>
+	<p>
+		Podmiotem zamieszczającym na urządzeniu końcowym Użytkownika Serwisu pliki cookies oraz uzyskującym do nich dostęp jest operator strony {{ cookie_domain|safe }}. 
+	</p>
+	<br/>
+	<p>
+		Pliki cookies witryny {{ cookie_domain|safe }} wykorzystywane są w celu:
+	</p>
+	<br/>
+	<p>
+		a) tworzenia statystyk, które pomagają zrozumieć, w jaki sposób Użytkownicy Serwisu korzystają ze stron internetowych, co umożliwia ulepszanie ich struktury i zawartości;
+	</p>
+	<br/>
+	<p>
+		b) utrzymanie sesji Użytkownika Serwisu (po zalogowaniu), dzięki której Użytkownik nie musi na każdej podstronie Serwisu ponownie wpisywać loginu i hasła;
+	</p>
+	<br/>
+	<p>
+		W ramach Serwisu stosowane są dwa zasadnicze rodzaje plików cookies: &bdquo;sesyjne&rdquo; (session cookies) oraz &bdquo;stałe&rdquo; (persistent cookies). Cookies &bdquo;sesyjne&rdquo; są plikami tymczasowymi, które przechowywane są w urządzeniu końcowym Użytkownika do czasu wylogowania, opuszczenia strony internetowej lub wyłączenia oprogramowania (przeglądarki internetowej). &bdquo;Stałe&rdquo; pliki cookies przechowywane są w urządzeniu końcowym Użytkownika przez czas określony w parametrach plików cookies lub do czasu ich usunięcia przez Użytkownika.
+	</p>
+	<br/>
+	<p>
+		W wielu przypadkach oprogramowanie służące do przeglądania stron internetowych (przeglądarka internetowa) domyślnie dopuszcza przechowywanie plików cookies w urządzeniu końcowym Użytkownika. Użytkownicy Serwisu mogą dokonać w każdym czasie zmiany ustawień dotyczących plików cookies. Ustawienia te mogą zostać zmienione w szczególności w taki sposób, aby blokować automatyczną obsługę plików cookies w ustawieniach przeglądarki internetowej bądź informować o ich każdorazowym zamieszczeniu w urządzeniu Użytkownika Serwisu. Szczegółowe informacje o możliwości i sposobach obsługi plików cookies dostępne są w ustawieniach oprogramowania (przeglądarki internetowej).
+	</p>
+	<br/>
+	<p>
+		Operator Serwisu informuje, że ograniczenia stosowania plików cookies nie wpływają na działanie strony oraz jej funkcjonalności.
+	</p>
+	<br/>
+	<p>
+		Więcej informacji na temat plików cookies dostępnych jest w sekcji &bdquo;Pomoc&rdquo; w menu przeglądarki internetowej.
+	</p>
+</div>
+{% endblock %}

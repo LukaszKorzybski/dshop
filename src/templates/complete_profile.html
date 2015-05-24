@@ -1,0 +1,68 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Uzupełnij Profil - Optionall.pl{% endblock %}
+{% block pdivClass %}cprofile{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dshop.page.CompleteProfile();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="section stop text">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    
+    <h1>Uzupełnij profil</h1>
+
+    {% if msg %}
+        {% ifequal msg 'neworder' %}
+            <ul class="infoBox">
+                <li class="ic">
+                    <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+                    <div class="icon"></div>
+                </li>
+                <li>Aby złożyć zamówienie musisz najpierw uzupełnić swoje konto o dane adresowe.</li>
+                <li>Po uzupełnieniu danych zostaniesz przeniesiony do składania zamówienia.</li>
+            </ul>
+        {% endifequal %}
+    {% else %}
+        <ul class="infoBox">
+            <li class="ic">
+                <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+                <div class="icon"></div>
+            </li>
+            <li>Tutaj możesz uzupełnić swoje konto o dane adresowe.</li>
+        </ul>
+    {% endif %}
+    
+
+    <form id="profileForm" class="base etop ebottom legend" action="." method="post">
+
+        {% include "include/profile_form.html" %}
+        
+        <fieldset>
+            <legend>Ochrona danych osobowych</legend>
+            <ul>
+                <li class="checkbox">
+                    {{ form.permission.errors }}
+                    {{ form.permission }}
+                    <label for="id_permission">Wyrażam zgodę na umieszczenie swoich danych
+                        teleadresowych w bazie firmy Perfekt i wykorzystanie ich zgodnie z ustawą
+                        z dnia 29.09.1997 o ochronie danych osobowych - Dz. U. nr 133 poz. 883.
+                    </label>
+                    <dfn>
+                        (Dane te będą wykorzystywane w celu ewidencji sprzedaży i kontaktu
+                        z nabywcą wyłącznie przez firmę Perfekt.)
+                    </dfn>
+                </li>
+            </ul>
+
+            <a id="btn_save" class="button submit" href="#"><em></em><span></span>Zapisz</a>
+        </fieldset>
+    </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "admin/main/change_list.html" %}
+{% load dshop_utils %}
+
+{% block result_list %}
+    {% if current_category %}
+        <div id="cat-tree">
+            <h2>Nawigacja po drzewie kategorii</h2>
+            <h5>Ścieżka powrotu</h5>
+            <p>
+                <a href="{{ cl|cat_tree_qs }}">wszystkie kategorie</a> &raquo;
+                {% for c in current_category.get_ancestors %}
+                    <a href="{{ cl|cat_tree_qs:c.id }}">{{ c.name }}</a> &raquo;
+                {% endfor %}
+                {{ current_category.name }}
+            </p>
+
+            <h5>Podkategorie</h5>
+            {% with current_category.children.all as children %}
+            {% if children %}
+                <ul>
+                    {% for c in current_category.children.all %}
+                    <li>
+                        <a href="{{ cl|cat_tree_qs:c.id }}"><strong>{{ c.name }}</strong></a>
+                        <ul>
+                            {% for sub in c.children.all %}
+                                <li><a href="{{ cl|cat_tree_qs:sub.id }}">{{ sub.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Brak</p>
+            {% endif %}
+            {% endwith %}
+        </div>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}

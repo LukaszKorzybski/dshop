@@ -1,0 +1,30 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+    <h1>Twoje zamówienie otrzymało numer {{ order.number }}</h1>
+
+    <p>Stan zamówienia możesz w każdej chwili sprawdzić pod adresem:
+        <a href="{{ SSL_PROTO }}://{{ HOST_NAME }}{% url dshop.main.views.myOrder year=orderYear,order=order.id %}">
+            {{ SSL_PROTO }}://{{ HOST_NAME }}{% url dshop.main.views.myOrder year=orderYear,order=order.id %}
+        </a>
+    </p>
+
+    {% ifequal order.payment "TR" %}
+        <h2>Dane do przelewu</h2>
+
+        <p id="transferInfo">
+        <strong>{{ company.name }}</strong><br />
+        ul. {{ company.addr_street }}<br />
+        {{ company.addr_code }} {{ company.addr_town }}<br /><br />
+
+        <strong>Konto bankowe</strong><br />
+        {{ company.account_bank }}<br />
+        {{ company.account_no }}
+        </p>
+    {% endifequal %}
+
+    <h2>Podsumowanie zamówienia</h2>
+    <div class="order locked">
+        {% include "email/order.html" %}
+    </div>
+{% endblock %}

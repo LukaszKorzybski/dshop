@@ -1,0 +1,71 @@
+{% load utils %}
+
+{% with art.diff_price_variants as diff_price_variants %}
+<li class="article {% if art.promotion.notNone %} promo{% endif %}{% if diff_price_variants %} qtyVariant{% endif %}{% if forloop.last %} last{% endif %}">
+    <article itemscope itemtype="http://schema.org/Product">
+    <div class="price">
+        {% if diff_price_variants %}
+            {% with art.cheapest_variant as cheapest %}
+                <a rel="nofollow" href="#" title="Dodaj do koszyka opakowanie {{ cheapest.variant }}">
+                    <em class="hidden">{{ art.id }},{{ cheapest.id }}</em>
+                </a>
+                <strong title="cena za opakowanie {{ cheapest.variant }}">
+                    <em>Od</em> {{ cheapest.gross|money }}
+                </strong><br/>
+                <span>{{ cheapest.net|money }}</span>
+            {% endwith %}
+        {% else %}
+            <a rel="nofollow" href="#" title="Dodaj do koszyka">
+                <em class="hidden">{{ art.id }}</em>
+            </a>
+            <strong {% if art.promotion.notNone %}title="Cena bez promocji: {{ art.gross|money }} brutto"{% endif %}>
+                {{ art.promotion.gross|money }}
+            </strong><br/>
+            <span>{{ art.promotion.net|money }}</span>
+        {% endif %}
+    </div>
+
+    <div class="info">
+        <a class="img" href="{{ art.get_absolute_url }}">
+            <img src="{{ art.main_photo.photo.extra_thumbnails.thumb }}" alt="{{ art.name }}"/>
+        </a>
+        
+        <header>
+        <h1 itemprop="name"><a class="major" href="{{ art.get_absolute_url }}" itemprop="url">{{ art.name }}</a></h1>
+        <ul class="e-info">
+            <li><strong itemprop="brand">{{ art.producer.name }}</strong></li>
+            {% if sys_param.opinions_active == "1" and art.opinion_count %}
+                <li>Komentarzy: <strong>{{ art.opinion_count }}</strong></li>
+                <li>
+                    Średnia ocen: <strong>{{ art.avg_rating|number:"1" }}</strong>
+                    <ul class="stars">
+                    {% for num in art.avg_rating_tuple.0|make_range %}
+                        <li></li>
+                    {% endfor %}
+                    {% if art.avg_rating_tuple.1 > 0 %}
+                        <li class="f-{{ art.avg_rating_tuple.1 }}"></li>
+                    {% endif %}
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
+        </header>
+
+        <ul class="props">
+            {% if art.recommended %}<li class="recc" title="Polecamy"></li>{% endif %}
+            {% if art.promotion %}<li class="promo" title="Promocja"></li>{% endif %}
+            {% if art.new %}<li class="new" title="Nowość"></li>{% endif %}
+        </ul>
+
+        <div class="desc">
+            {% if art.promotion.notNone and art.promotion %}
+                {{ art.promotion.short_desc|truncatewords:19 }}
+            {% else %}
+                {{ art.short_desc|truncatewords:19 }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="clear"></div>
+    </article>
+</li>
+{% endwith %}

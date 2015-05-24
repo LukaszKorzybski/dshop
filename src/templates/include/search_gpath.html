@@ -1,0 +1,11 @@
+{% if group %}
+    <ul class="gpath{% if gtree.is_empty %} noGtree{% endif %}">
+        <li>powrót:</li>
+        <li><a href="{% url dshop-searchtxt searchText %}">wyniki wyszukiwania</a></li>{% if gpath %} &rsaquo; {% endif %}
+        {% for g in gpath %}
+        <li>
+            <a href="{% url dshop-search-g searchText,g.id,g.slug %}">{{ g.name }}</a>
+        </li> {% if not forloop.last %}&rsaquo; {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}

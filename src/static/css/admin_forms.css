@@ -1,0 +1,359 @@
+/* --------------------- Django admin theme tweaks -------------------------- */
+
+#header {
+    background: none;
+}
+
+/* -------------- Common classes --------------- */
+
+.hidden {
+    display: none;
+}
+
+input, select, textarea, option {
+    background: #fff;
+}
+
+.ok {
+    color: #52a922;
+}
+
+.fail {
+    color: #c30a0a;
+}
+
+.warning {
+    color: #ff9a33;
+}
+
+/* -------------- Tabs --------------- */
+
+ul.tabs {
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 0;
+    border-bottom: 2px solid #fff;
+}
+
+ul.tabs li {
+    float: left;
+    margin-right: 2px;
+    font-size: 12px;
+    padding: 0;
+    list-style: none;
+    background: #eaeaea;
+    border: none;
+    letter-spacing: 0.4px;
+}
+ul.tabs li.active a {
+    background: #fff;
+    color: #f36 !important;
+}
+ul.tabs li a {
+    display: block;
+    padding: 7px 15px;
+    font-weight: bold;
+}
+ul.tabs li a:hover {
+    padding: 7px 15px;
+    margin: 0;
+}
+
+ul.tabs li.errors a {
+    color: red;
+}
+ul.tabs li.disabled a {
+    color: #999 !important;
+}
+ul.tabs li.disabled a:hover {
+    color: #999 !important;
+    background: #eaeaea;
+}
+
+/* -------------- Edit page (common) --------------- */
+
+div.form-row.readonly label {
+    padding-top: 0;
+}
+
+/* -------------- Change page Section --------------- */
+
+div.dshop-sect {
+    border: 1px solid #CCC;
+    padding: 10px;
+}
+div.dshop-sect p.paginator {
+    border-top: none;
+}
+
+/* ------------ Property edit page -------------- */
+
+body.main-property #id_name { width: 610px; }
+
+/* -------------- News edit page --------------- */
+
+body.main-news div.title input {
+    width: 610px;
+}
+
+/* -------------- Unit edit page --------------- */
+
+body.main-unit div.short input,
+body.main-unit div.precision input {
+    width: 90px;
+}
+
+/* -------------- Client edit page --------------- */
+
+body.main-client div.login input,
+body.main-client div.password1 input,
+body.main-client div.first_name input,
+body.main-client div.town input,
+body.main-client div.street input {
+    width: 220px;
+}
+body.main-client div.nip input,
+body.main-client div.code input,
+body.main-client div.number input[id$="number"] {
+    width: 120px;
+}
+body.main-client div.phone input,
+body.main-client div.second_phone input {
+    width: 120px;
+    margin-right: 100px;
+}
+body.main-client #id_promo_multiplier { width: 5em; }
+
+/* -------------- Discount/Promotion edit page --------------- */
+
+#clientdiscount_form div.net input,
+#clientdiscount_form div.gross input,
+#clientdiscount_form div.percent input,
+#promotion_form div.net input,
+#promotion_form div.gross input,
+#promotion_form div.percent input {
+    width: 90px;
+}
+
+body.main-promotion .form-row.vat,
+body.main-promotion .form-row.orig_net,
+body.main-promotion .form-row.orig_gross,
+body.main-clientdiscount .form-row.vat,
+body.main-clientdiscount .form-row.orig_net,
+body.main-clientdiscount .form-row.orig_gross {
+    display: none;
+}
+
+/* -------------- Category edit page --------------- */
+
+body.main-category #id_name { width: 40em; }
+
+/* -------------- Article edit page --------------- */
+
+body.main-article div.name input {
+    width: 350px;
+}
+body.main-article div.cat_index input {
+    width: 175px;
+}
+body.main-article div.vat input,
+body.main-article div.net input,
+body.main-article div.gross input,
+body.main-article div.stock_lvl input,
+body.main-article div.weight input {
+    width: 90px;
+}
+
+/* -------------- Shop Article edit page --------------- */
+
+#shoparticle_form fieldset.base,
+#shoparticle_form fieldset.categories {
+    float: left;
+    width: 49.5%;
+    margin-right: 0.5%;
+}
+#shoparticle_form fieldset.categories { margin-right: 0; }
+
+#shoparticle_form fieldset.recc { clear: both; }
+
+body.main-shoparticle #id_short_desc {
+    width: 357px;
+    height: 100px;
+}
+
+body.main-shoparticle #id_desc {
+    width: 718px;
+    height: 600px;
+}
+
+body.main-shoparticle div.variants_type,
+body.main-shoparticle div.variants_name,
+body.main-shoparticle div.main_variant_name,
+body.main-shoparticle div.main_variant_qty,
+body.main-shoparticle div.variants_unit {
+    display: none;
+}
+
+#variant_set-group td.variant input { width: 180px; }
+#variant_set-group td.qty input,
+#variant_set-group td.art_purchase_net input,
+#variant_set-group td.art_purchase_gross input,
+#variant_set-group td.art_net input,
+#variant_set-group td.art_gross input,
+#variant_set-group td.art_weight input,
+#variant_set-group td.art_stock_lvl input { width: 70px; }
+
+#variant_set-group td.art_purchase_net,
+#variant_set-group td.art_purchase_gross,
+#variant_set-group td.art_net,
+#variant_set-group td.art_gross,
+#variant_set-group td.art_weight { white-space: nowrap; }
+
+#shoparticle_form fieldset.base div.art_vat input,
+#shoparticle_form fieldset.base div.art_purchase_net input,
+#shoparticle_form fieldset.base div.art_net input {
+    width: 80px;
+}
+
+/* -------------- Shipper edit page --------------- */
+
+body.main-shipper td.max_weight input,
+body.main-shipper td.net input,
+body.main-shipper td.gross input,
+body.main-shipper #id_package_wrapping_weight,
+body.main-shipper #id_pallet_capacity,
+body.main-shipper #id_cash_on_delivery_net {
+    width: 5em;
+}
+
+body.main-shipper #id_vat {
+    width: 5em;
+}
+
+body.main-shipper div.package_wrapping_weight,
+body.main-shipper div.pallet_capacity,
+body.main-shipper div.cash_on_delivery_net {
+    display: none;
+}
+
+body.main-shipper div.inline-group table {
+    display: none;
+}
+
+/* -------------- Order list --------------- */
+
+body.main-order.change-list  #result_list tr.sent { background: #e1f9f8; }
+body.main-order.change-list #result_list tr.final {
+    background: #eee;
+    color: #888;
+}
+body.main-order.change-list #result_list tr.final .fail { color: #888; }
+
+body.main-order.change-list #result_list tr.sent-to-supplier {
+    background-color: #eee;
+    color: #888;
+}
+body.main-order.change-list #result_list tr.sent-to-supplier td:last-child {
+    background-color: #d8fffb;
+    font-weight: bold;
+}
+
+/* -------------- Order edit page --------------- */
+
+#order_form fieldset.info,
+#order_form fieldset.shipment,
+#order_form fieldset.summary,
+#order_form fieldset.payment {
+    width: 32%;
+    margin-right: 1%;
+}
+#order_form fieldset.info { float: left; }
+#order_form fieldset.summary,
+#order_form fieldset.payment { float: none; }
+#order_form fieldset.shipment { float: right; }
+
+#order_form fieldset.client { clear: both; }
+
+#order_form fieldset.client,
+#order_form fieldset.shipment_addr,
+#order_form fieldset.comments {
+    float: left;
+    width: 32%;
+    margin-right: 1%;
+}
+
+#order_form div.inline-group {
+    clear: both;
+}
+
+#order_form #id_number { font-size: 16px; }
+#order_form #id_comments { width: 98%; }
+
+#order_form fieldset.summary div.sum_discount { font-size: 16px; }
+
+#order_form #id_payment_status option[value="2"] { color: green; }
+#order_form #id_payment_status option[value="3"] { color: red; }
+
+#orderitem_set-group td.param_value textarea {
+    width: 300px;
+    height: 80px;
+}
+#orderitem_set-group td.discount_net input,
+#orderitem_set-group td.discount_gross input,
+#orderitem_set-group td.sum_discount_net input,
+#orderitem_set-group td.sum_discount_gross input {
+    width: 80px;
+}
+#orderitem_set-group td.qty input {
+    width: 100px;
+}
+
+#orderitem_set-group td.article a.related-lookup ~ strong {
+    display: none;
+}
+
+#orderitem_set-group td.original p > a:hover {
+    padding: 2px 0;
+    margin: 0;
+}
+
+/* -------------- PageFragment edit page --------------- */
+
+body.main-pagefragment #id_location {
+    min-width: 232px;
+}
+
+/* -------------- AdditionalLink edit page --------------- */
+
+body.main-additionallink #id_title,
+body.main-additionallink #id_url {
+    width: 30em;
+}
+
+/* -------------- HelpLink edit page --------------- */
+
+body.main-helplink #id_name,
+body.main-helplink #id_url {
+    width: 30em;
+}
+
+/* -------------- Redirect edit page --------------- */
+
+body.main-redirect  #id_source,
+body.main-redirect  #id_dest {
+    width: 30em;
+}
+
+/* -------------- MainPageAd edit page --------------- */
+
+body.main-mainpagead #id_name { width: 30em; }
+
+/* -------------- Specification edit page --------------- */
+
+body.main-specification #id_name { width: 30em; }
+
+/* -------------- StaticPage edit page --------------- */
+
+body.main-staticpage #id_title { width: 30em; }
+body.main-staticpage #id_spagecontent-0-content { height: 400px; }

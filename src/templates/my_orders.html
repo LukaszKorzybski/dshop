@@ -1,0 +1,62 @@
+{% extends "base_nonav.html" %}
+{% load utils dshop_utils %}
+
+{% block title %}Moje zamówienia - Optionall.pl{% endblock %}
+{% block pdivClass %}myOrders{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dshop.page.MyOrders();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    
+    <h1>Moje konto</h1>
+
+    {% include "include/myaccount_menu.html" %}
+
+    {% if years %}
+        <form id="yearSel" action="{% url dshop-myorders %}" method="get">
+            <fieldset>
+                Zamowienia z roku
+                <select>
+                    {% for y in years %}
+                        <option value="{{ y.0 }}" {% ifequal y.0 year %}selected="selected"{% endifequal %}>{{ y.0 }} ({{ y.1 }})</option>
+                    {% endfor %}
+                </select>
+            </fieldset>
+        </form>
+    {% endif %}
+
+    {% if orders %}
+        <table class="base text">
+            <thead>
+                <tr>
+                    <th class="left"><em></em>Numer</th>
+                    <th>Data złożenia</th>
+                    <th>Status</th>
+                    <th class="right"><em></em>Kwota</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for o in orders %}
+                <tr class="{% cycle 'o' 'e' %}">
+                    <td class="o number"><a href="{{ o.get_absolute_url }}">{{ o.number }}</a></td>
+                    <td class="e">{{ o.created }}</td>
+                    <td class="o">{{ o.status|order_status }}</td>
+                    <td class="e">{{ o.discount_gross|money }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="noorders">Brak zamówień.</p>
+    {% endif %}
+    
+</div>
+{% endblock %}

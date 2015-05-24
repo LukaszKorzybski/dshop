@@ -1,0 +1,15 @@
+{% if not cookies_info %}
+<script>
+	  	$('a#cookies_hide').live("click", function (event){ event.preventDefault(); var url = $("#cookies_hide").attr("href"); $.get(url); $("#cookies_info").slideToggle(); });
+</script>
+<div id="cookies_info">
+	<div>
+		<p>
+			Strona korzysta z plików cookies w celu realizacji usług i zgodnie z <a href="/cookies/" title="Polityka plików cookies">Polityką Plików Cookies.</a>
+			<br/>
+			Możesz określić warunki przechowywania lub dostępu do plików cookies w ustawieniach Twojej przeglądarki.
+		</p>
+		<a href="/cookies/" id="cookies_hide">&nbsp;</a>
+	</div>
+</div>
+{% endif %}

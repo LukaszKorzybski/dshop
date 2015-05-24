@@ -1,0 +1,165 @@
+{% load utils dshop_utils %}
+
+<div class="cart {% block mainClass %}{% endblock %}">
+{% block cart %}
+    {% if baseCart.item_count %}
+
+        {% block messages %}
+            <ul class="infoBox">
+                <li class="ic">
+                    <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+                    <div class="icon"></div>
+                </li>
+                {% block messagesExtra %}{% endblock %}
+
+                {% with baseCart.params as params %}
+                {% if params %}
+                    {% block paramsMessage %}
+                    <li>
+                        W koszyku znajdują się pozycje z możliwością podania parametrów ({{ params|join:", " }}).
+                        Uzupełnij je teraz lub pozostaw puste, wtedy my skontaktujemy się z Tobą w celu ich ustalenia.
+                    </li>
+                    {% endblock %}
+                {% endif %}
+                {% endwith %}
+                <li>
+                    {% with baseCart.delivery_full_refund as full_refund %}
+                    {% with baseCart.delivery_half_refund as half_refund %}
+                        {% if full_refund.granted %}
+                            Wartość {% block c3 %}koszyka{% endblock %} przekroczyła
+                            {{ full_refund.level|money }},
+                            dlatego <strong>{% block t2 %}pokryjemy{% endblock %} w całości</strong> koszt transportu.
+                        {% else %}
+                            {% if half_refund.granted %}
+                                Wartość {% block c2 %}koszyka{% endblock %} przekroczyła {{ half_refund.level|money }},
+                                dlatego <strong>rabat</strong> na koszt dostawy {% block t1 %}wyniesie{% endblock %} 50%.
+                                Aby otrzymać transport gratis zamów artykuły za ponad {{ full_refund.level|money }}.
+                            {% else %}
+                                Jeśli wartość {% block c1 %}koszyka{% endblock %} przekroczy {{ half_refund.level|money }},
+                                to rabat na koszt dostawy wyniesie 50%.
+                                Aby otrzymać transport gratis zamów artykuły za ponad {{ full_refund.level|money }}.
+                            {% endif %}
+                        {% endif %}
+                    {% endwith %}
+                    {% endwith %}
+                </li>
+                {% block messagesExtraAfter %}{% endblock %}
+            </ul>
+        {% endblock %}
+        
+        {% block top %}{% endblock %}
+
+        {% block actions %}
+            <ul id="cartActions">
+                {% block clearCartAction %}
+                    <li class="last" id="clearAct">
+                        <a href="#" class="button small" id="clearBtn" title="Wyczyść zawartość koszyka"><em></em><span></span>Wyczyść</a>
+                    </li>
+                {% endblock %}
+                <li id="recalcAct">
+                    <strong>Zmieniałeś ilości?</strong>
+                    <p>
+                        <a href="#" class="button small" id="recalcBtn" title="Przelicz ilości produktów"><em></em><span></span>Przelicz</a>
+                    </p>
+                </li>
+                {% block extraActions %}{% endblock %}
+            </ul>
+            <div class="clear"></div>
+        {% endblock %}
+
+        <form class="cart" action="." method="post">
+        <fieldset>
+        <table class="base hcompact cart-items">
+            <thead>
+                <tr>
+                    <th class="lp left"><em></em></th>
+                    <th>Towar</th>
+                    <th class="unit">j.m.</th>
+                    <th class="price">Cena</th>
+                    <th class="remove right"><em></em></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% block items %}
+                    {% for ek in baseCart.item_set.all %}
+                        <tr class="item {% cycle 'o' 'e' %}" id="item-{{ ek.article_id }}">
+                            {% include "include/editable_cart_item.html" %}
+                        </tr>
+                    {% endfor %}
+                {% endblock %}
+            </tbody>
+        </table>
+            <input type="hidden" name="action" value=""/>
+            <input type="hidden" name="article" value=""/>
+
+            {% block info %}
+                <p class="text prepare-time">Przewidywany czas realizacji zamówienia: {{ baseCart.exec_time|d_exectime:helpLinks.contact.url|safe }}</p>
+            {% endblock %}
+            
+            {% block summary %}
+                <table class="cartSummary">
+                    <tr><th class="n"></th><th></th></tr>
+                    <tr class="sum">
+                        <td class="n">Razem:</td>
+                        <td>
+                            <strong>{{ baseCart.discount_gross|money }} brutto</strong><br/>
+                            <span class="net">{{ baseCart.discount_net|money }} netto</span>
+                        </td>
+                    </tr>
+                    {% if baseCart.is_discount %}
+                    <tr class="save">
+                        <td class="n">Oszczędzasz:</td>
+                        <td class="n">
+                            {{ baseCart.savings_gross|money }} ({{ baseCart.savings_net|money }} netto)
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            {% endblock %}
+
+            {% block moreActions %}
+                <ul id="moreActions">
+                    <li class="first">
+                        <a class="button" href="#" id="orderBtn"><em></em><span></span>Zamów</a>
+                    </li>
+                    <li>
+                        <a class="button minor back-btn" href="{{ return_url }}"><em></em><span></span>Kontynuuj zakupy</a>
+                    </li>
+                </ul>
+            {% endblock %}
+            <div class="clear"></div>
+
+        </fieldset>
+        </form>
+    {% else %}
+
+        {% block emptyInfo %}
+            <div class="emptyCart">
+                <h2>Koszyk jest pusty</h2>
+                <a class="button back-btn" href="{{ return_url }}"><em></em><span></span>Kontynuuj zakupy</a>
+            </div>
+        {% endblock %}
+        
+    {% endif %}
+
+    <div class="hidden" id="fboxWindows">
+    {% block fboxWindows %}
+        <div id="fboxParam">
+            <h2>[article name]</h2>
+            <p class="variant">[variant]</p>
+
+            <form action="" class="base etop ebottom">
+                <fieldset class="first">
+                    <ul>
+                        {{ paramForm.as_ul }}
+                    </ul>
+                </fieldset>
+            </form>
+            <div class="cinfo"></div>
+            <p class="clear"></p>
+        </div>
+    {% endblock %}
+    </div>
+    
+{% endblock %}
+</div>

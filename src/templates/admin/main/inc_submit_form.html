@@ -1,0 +1,6 @@
+{% load adminmedia admin_modify i18n %}
+<div id="submit-form">
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" >
+        {% submit_row %}
+    </form>
+</div>

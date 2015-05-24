@@ -1,0 +1,39 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Aktywacja karty klienta - Optionall.pl{% endblock %}
+{% block pdivClass %}activateCard{% endblock %}
+
+{% block content %}
+<div class="section stop text">
+    <div class="corner tl"></div><div class="corner bl"></div>
+
+    <h1>Aktywacja karty klienta</h1>
+
+    <ul class="infoBox">
+        <li class="ic">
+            <div class="ic itl"></div><div class="ic itr"></div><div class="ic ibr"></div><div class="ic ibl"></div>
+            <div class="icon"></div>
+        </li>
+        <li>Poniżej wpisz dane z otrzymanej od nas karty klienta.</li>
+    </ul>
+
+    <form class="base bold etop ebottom" action="." method="post">
+        <fieldset class="first">
+            <ul>
+                <li class="errors">{{ form.non_field_errors }}</li>
+                <li>
+                    {{ form.clientNumber.errors }}
+                    <label for="id_clientNumber">ID Klienta:</label>
+                    {{ form.clientNumber }}
+                </li>
+                <li>
+                    {{ form.code.errors }}
+                    <label for="id_code">Kod aktywacyjny:</label>
+                    {{ form.code }}
+                </li>
+            </ul>
+            <a class="button submit" href="#"><em></em><span></span>Aktywuj</a>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

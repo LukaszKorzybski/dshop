@@ -1,0 +1,41 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Strona nie istnieje - Optionall.pl{% endblock %}
+{% block pdivClass %}p404{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    
+    <h1>Przepraszamy, żądana strona nie istnieje.</h1>
+
+    <p><strong>Wierzymy jednak, że znajdziesz u nas coś dla siebie.</strong></p>
+
+    <div class="sec">
+        <p>Zawsze możesz liczyć na naszą pomoc <a class="intext" href="{{ helpLinks.contact.url }}">
+        kontaktując się z nami</a> telefonicznie lub mailowo.</p>
+
+        <a class="button" href="{% url dshop.main.views.mainpage %}"><em></em><span></span>Powrót do głównej strony</a>
+    </div>
+
+    <div id="search">
+        <h2 class="first">Szukaj produktu</h2>
+        <form class="search" action="{% url dshop-search %}">
+            <fieldset>
+                <div class="l"></div><input type="text" name="text"></input><div class="r"></div>
+                <button type="submit"></button>
+            </fieldset>
+        </form>
+
+        <h2>Nasz asortyment</h2>
+        <ul>
+            {% for g in mainGroups %}
+                <li><a href="{{ g.get_absolute_url }}" title="{{ g.name }}">{{ g.name }}</a></li>
+            {% endfor %}
+            <li></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+
+</div>
+{% endblock %}

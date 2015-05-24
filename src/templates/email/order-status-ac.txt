@@ -1,0 +1,15 @@
+{% extends "email/base.txt" %}
+
+{% block content %}
+Twoje zamówienie nr {{ order.number }}, zostało przekazane do realizacji.
+
+Stan zamówienia możesz w każdej chwili sprawdzić pod adresem:
+{{ SSL_PROTO }}://{{ HOST_NAME }}{% url dshop.main.views.myOrder year=orderYear,order=order.id %}
+
+
+_______________________
+Podsumowanie zamówienia
+-----------------------
+{% include "email/order.txt" %}
+
+{% endblock %}

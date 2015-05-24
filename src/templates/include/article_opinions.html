@@ -1,0 +1,84 @@
+<div id="opinions" class="section">
+    <div class="corner tl"></div><div class="corner bl"></div>
+
+    <div class="rating">
+        <a class="button xsmall toggle" href="javascript:void(0)"><em></em><span></span>Dodaj opinię</a>
+        {% if article.opinion_count %}
+            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                <meta itemprop="itemReviewed" content="{{ article.name }}">
+                <meta itemprop="ratingCount" content="{{ article.opinion_count }}">
+                <div class="stars"></div>
+                <p>
+                    <meta itemprop="bestRating" content="10">
+                    <meta itemprop="worstRating" content="1">
+                    Średnia ocena: 
+                    <data itemprop="ratingValue" value="{{ article.avg_rating_tuple.0 }}.{{ article.avg_rating_tuple.1 }}"><span>{{ article.avg_rating_tuple.0 }},</span><strong>{{ article.avg_rating_tuple.1 }}</strong></data>
+                </p>
+            </div>
+        {% endif %}
+    </div>
+
+
+    <h2 class="h1 icon lined"><em></em>Opinie ({{ article.opinion_count }})</h2>
+
+    <form class="base label-top etop ebottom" action="./#opinions" method="post">
+        {% if sys_param.opinions_allow_anonymous == "1" or authLevel > 0 %}
+            <ul>
+                {{ opinion_form.as_ul }}
+            </ul>
+            <p>
+                <button type="button" class="text ok"><em></em>dodaj opinię</button>
+            </p>
+        {% else %}
+            <h2><a class="intext" href="{% url login %}">Zaloguj się</a> aby dodać opinię.</h2>
+        {% endif %}
+    </form>
+
+    {% if article.opinion_count %}
+        <ul>
+            {% for o in opinions.object_list %}
+                <li data-id="{{ o.id }}">
+                    <article itemprop="review" itemscope itemtype="http://schema.org/Review">
+                    <link itemprop="itemReviewed" href="{{ article.get_absolute_url }}">
+                    {% if sys_param.opinions_abuse_reports == "1" and o.content %}
+                        <span class="toolbar">
+                            <a class="abuse" title="Zgłoś nadużycie regulaminu." href="javascript:void(0)">zgłoś do moderacji</a>
+                        </span>
+                    {% endif %}
+                    <em></em>
+                    <header class="head">
+                        <address itemprop="author">{{ o.author }}</address>
+                        <span class="date"><time itemprop="dateCreated" datetime="{{ o.created|date:"Y-m-d" }}">z dnia {{ o.created|date:"d.m.Y" }}</time></span>
+                        <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="stars" data-rating="{{ o.rating }}">
+                            <meta itemprop="worstRating" content="1">
+                            <meta itemprop="bestRating" content="10">
+                            <meta itemprop="ratingValue" content="{{ o.rating }}">
+                            ocena: {{ o.rating }}
+                        </span>
+                    </header>
+                    <p itemprop="reviewBody">{{ o.content|linebreaksbr }}</p>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if opinions.has_other_pages %}
+            <div class="prev-next">
+                {% if opinions.has_previous %}
+                    {% if opinions.number == 2 %}
+                            <a class="prev" href="../#opinions"><em></em>nowsze</a>
+                        {% else %}
+                            <a class="prev" href="../{{ opinions.previous_page_number }}/#opinions"><em></em>nowsze</a>
+                        {% endif %}
+                {% endif %}
+                {% if opinions.has_next %}
+                    {% if opinions.number == 1 %}
+                        <a class="next" href="./{{ opinions.next_page_number }}/#opinions">starsze<em></em></a>
+                    {% else %}
+                        <a class="next" href="../{{ opinions.next_page_number }}/#opinions">starsze<em></em></a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="clear"></div>
+        {% endif %}
+    {% endif %}
+</div>

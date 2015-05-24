@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% if user.get_profile.is_external %}Panel Zamówień Dostawcy{% else %}{% trans 'Panel administracyjny' %}{% endif %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% if user.get_profile.is_external %}Panel Zamówień Dostawcy{% else %}{% trans 'Panel administracyjny' %}{% endif %}</h1>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}admin-theme/admin_theme.css" />
+
+    <script type="text/javascript" encoding="utf8" src="{{ MEDIA_URL }}lib/jquery.js"></script>
+    <script type="text/javascript" encoding="utf8" src="{{ MEDIA_URL }}lib/pure.js"></script>
+    <script type="text/javascript" encoding="utf8" src="{{ MEDIA_URL }}lib/json2.js"></script>
+    <script type="text/javascript" encoding="utf8" src="{{ MEDIA_URL }}js/admin_base.js"></script>
+
+    <script type="text/javascript" encoding="utf8" src="{{ MEDIA_URL }}lib/cufon-yui.js"></script>
+    <script type="text/javascript" encoding="utf8" src="{{ MEDIA_URL }}admin-theme/Titillium_100-Titillium_700.font.js"></script>
+    <script type="text/javascript" encoding="utf8" src="{{ MEDIA_URL }}admin-theme/cufon.js"></script>
+    
+    <script type="text/javascript" encoding="utf8">
+        adm.media_url = '{{ MEDIA_URL }}';
+        adm.url_prefix = '{{ URL_PREFIX }}';
+        adm.external_supplier = {% if user.get_profile.is_external %}true{% else %}false{% endif %};
+    </script>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+    <script type="text/javascript"> Cufon.now(); </script>
+{% endblock %}

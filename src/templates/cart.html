@@ -1,0 +1,23 @@
+{% extends "base_search.html" %}
+{% load utils %}
+
+{% block title %}Koszyk - Optionall.pl{% endblock %}
+{% block pdivClass %}cart{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('form.cart').d_shoppingCart({ url_prefix: dshop.url_prefix });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="corner tl"></div><div class="corner bl"></div>
+
+    <h1>Mój koszyk</h1>
+    {% include "include/base_cart.html" %}
+    
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "admin/main/change_form.html" %}
+{% load adminmedia admin_modify i18n %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+{% endblock %}
+
+
+{% block content %}
+{% if object_id %}
+    <div id="shoparticle-id" class="hidden">{{ object_id }}</div>
+{% endif %}
+
+
+<ul id="main-tabs" class="tabs">
+    <li class="{% ifequal active_tab "base" %}active{% endifequal %}"><a href="#base">Podstawowe</a></li>
+    <li class="{% ifequal active_tab "desc" %}active{% endifequal %}"><a href="#desc">Opis</a></li>
+    <li class="{% ifequal active_tab "variants" %}active{% endifequal %}"><a href="#variants">Warianty</a></li>
+    <li class="{% ifequal active_tab "photos" %}active{% endifequal %}"><a href="#photos">Zdjęcia</a></li>
+    <li class="{% ifequal active_tab "attachments" %}active{% endifequal %}"><a href="#attachments">Załączniki</a></li>
+    {% if sys_param.opinions_active == "1" and object_id %}
+        <li class="{% ifequal active_tab "opinions" %}active{% endifequal %}"><a href="#opinions">Opinie</a></li>
+    {% endif %}
+</ul>
+<div class="clear"></div>
+
+
+<div class="tab main hidden" id="tab-base">
+    {{ block.super }}
+</div>
+
+<div class="tab hidden" id="tab-desc">
+    <div class="form-holder"></div>
+    <div class="extra">{% submit_row %}</div>
+</div>
+
+<div class="tab hidden" id="tab-variants">
+    <div class="form-holder"></div>
+    <div class="extra">{% submit_row %}</div>
+</div>
+
+<div class="tab hidden" id="tab-photos">
+    <div class="form-holder"></div>
+    <div class="extra">{% submit_row %}</div>
+</div>
+
+<div class="tab hidden" id="tab-attachments">
+    <div class="form-holder"></div>
+    <div class="extra">{% submit_row %}</div>
+</div>
+
+{% if sys_param.opinions_active == "1"  and object_id %}
+    <div class="tab hidden" id="tab-opinions">
+        <div>
+            <iframe class="hidden detail-list" frameborder="0"></iframe>
+        </div>
+        <div class="extra">{% submit_row %}</div>
+    </div>
+{% endif %}
+
+{% endblock %}
+
+
+
+{% block after_related_objects %}
+    <input id="id_active_tab" type="hidden" name="active_tab" value="{{ active_tab }}" />
+    <div class="hidden" id="fields-holder">
+    </div>
+{% endblock %}

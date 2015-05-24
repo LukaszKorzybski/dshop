@@ -1,0 +1,93 @@
+<fieldset class="first">
+    <legend>Podstawowe dane</legend>
+    <ul>
+        {% if not client.profile_complete %}
+        <li>
+            {{ form.clientType.errors }}
+            <label for="id_client_type">Określ siebie:</label>
+            {{ form.clientType }}
+        </li>
+        {% endif %}
+
+        <li id="li_firstName">
+            {{ form.firstName.errors }}
+            <label for="id_first_name">Imię:</label>
+            {{ form.firstName }}
+        </li>
+        <li id="li_lastName">
+            {{ form.lastName.errors }}
+            <label for="id_last_name">Nazwisko:</label>
+            {{ form.lastName }}
+        </li>
+        {% if client.is_company %}
+            <li id="li_companyName">
+                {{ form.companyName.errors }}
+                <label for="id_company_name">Nazwa firmy:</label>
+                {{ form.companyName }}
+            </li>
+            <li id="li_nip">
+                {{ form.nip.errors }}
+                <label for="id_nip">NIP:</label>
+                {{ form.nip }}
+            </li>
+        {% endif %}
+        
+        {% if not client.is_company %}
+            {% if not client.profile_complete %}
+                <li id="li_companyName">
+                    {{ form.companyName.errors }}
+                    <label for="id_company_name">Nazwa firmy:</label>
+                    {{ form.companyName }}
+                </li>
+                <li id="li_nip">
+                    {{ form.nip.errors }}
+                    <label for="id_nip">NIP:</label>
+                    {{ form.nip }}
+                </li>
+            {% endif %}
+        {% endif %}
+        {% block baseinfo_last %}{% endblock %}
+    </ul>
+</fieldset>
+
+<fieldset>
+    <legend>Adres</legend>
+    <ul>
+        <li>
+            {{ form.street.errors }}
+            <label for="id_street">Ulica:</label>
+            {{ form.street }}
+        </li>
+        <li>
+            {{ form.buildingNo.errors }}
+            <label for="id_building_no">Numer budynku, mieszkania:</label>
+            {{ form.buildingNo }}
+        </li>
+        <li>
+            {{ form.postCode.errors }}
+            <label for="id_post_code">Kod pocztowy:</label>
+            {{ form.postCode }}
+        </li>
+        <li>
+            {{ form.city.errors }}
+            <label for="id_city">Miejscowość:</label>
+            {{ form.city }}
+        </li>
+    </ul>
+</fieldset>
+
+<fieldset>
+    <legend>Kontakt</legend>
+    <ul>
+        <li>
+            {{ form.phone.errors }}
+            <label for="id_phone">Telefon:</label>
+            {{ form.phone }}
+        </li>
+        <li>
+            {{ form.secondPhone.errors }}
+            <label for="id_second_phone">Dodatkowy telefon:</label>
+            {{ form.secondPhone }}
+        </li>
+    </ul>
+</fieldset>

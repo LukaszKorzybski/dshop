@@ -1,0 +1,10 @@
+{% load utils %}
+
+<ul>
+{% for art in randomArticles %}
+    <li>
+        <a rel="nofollow" href="{{ art.get_absolute_url }}"><img arc="" alt="{{ art.nazwa }}"/></a>
+        <a rel="nofollow" href="{{ art.get_absolute_url }}" title="{{ art.nazwa }} | {{ art.opis.opisKrotki|striptags|safe }}">{{ art.nazwa }}</a>
+    </li>
+{% endfor %}
+</ul>

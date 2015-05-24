@@ -1,0 +1,59 @@
+{% extends "admin/change_form.html" %}
+{% load adminmedia admin_modify i18n %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+{% endblock %}
+
+
+{% block content %}
+{% if object_id %}
+    <div id="client-id" class="hidden">{{ object_id }}</div>
+{% endif %}
+
+
+<ul id="main-tabs" class="tabs">
+    <li {% ifequal active_tab "profile" %}class="active"{% endifequal %}><a href="#profile">Profil</a></li>
+    <li {% ifequal active_tab "address" %}class="active"{% endifequal %}><a href="#address">Adresy</a></li>
+    {% if object_id %}
+        <li {% ifequal active_tab "orders" %}class="active"{% endifequal %}><a href="#orders">Zamówienia</a></li>
+        <li {% ifequal active_tab "discounts" %}class="active"{% endifequal %}><a href="#discounts">Rabaty</a></li>
+    {% endif %}
+</ul>
+<div class="clear"></div>
+
+
+<div class="tab main hidden" id="tab-profile">
+    {{ block.super }}
+</div>
+
+<div class="tab hidden" id="tab-address">
+    <div class="form-holder"></div>
+    <div class="extra">{% submit_row %}</div>
+</div>
+
+{% if object_id %}
+    <div class="tab hidden" id="tab-orders">
+        <div>
+            <iframe class="hidden detail-list" frameborder="0"></iframe>
+        </div>
+        <div class="extra">{% submit_row %}</div>
+    </div>
+    
+    <div class="tab hidden" id="tab-discounts">
+        <div>
+            <iframe class="hidden detail-list" frameborder="0"></iframe>
+        </div>
+        <div class="extra">{% submit_row %}</div>
+    </div>
+{% endif %}
+{% endblock %}
+
+
+
+{% block after_related_objects %}
+    <input id="id_active_tab" type="hidden" name="active_tab" value="{{ active_tab }}" />
+    <div class="hidden" id="fields-holder">
+    </div>
+{% endblock %}

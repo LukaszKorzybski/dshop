@@ -1,0 +1,25 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+    <h1>Twoje zamówienie nr {{ order.number }} zostało wysłane.</h1>
+
+    {% with order.shipment as shipment %}
+    {% with shipment.shipper as shipper %}
+        <p>
+            Spedytor obsługujący zamówienie: {{ shipment.shipper_name }}
+            {% if shipment.identifier %}<br />Numer przesyłki: {{ shipment.identifier }}{% endif %}
+        </p>
+
+        {% if shipper and shipper.shipment_tracking_url %}
+            <p>Możesz śledzić stan przesyłki pod adresem <a href="{{ shipper.shipment_tracking_url }}">{{ shipper.shipment_tracking_url }}</a></p>
+        {% endif %}
+    {% endwith %}
+    {% endwith %}
+
+    <p>Dziękujemy za dokonanie zakupów w naszym sklepie i zapraszamy ponownie!</p>
+    
+    <h2>Podsumowanie zamówienia</h2>
+    <div class="order locked">
+        {% include "email/order.html" %}
+    </div>
+{% endblock %}

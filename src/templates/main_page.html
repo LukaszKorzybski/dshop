@@ -1,0 +1,140 @@
+{% extends "base_search.html" %}
+{% block title %}{{ meta.mpage.title.content }}{% endblock %}
+{% block pdivClass %}mainPage{% endblock %}
+{% block maindivClass %}mainPage{% endblock %}
+
+{% block logo %}<h1>{{ block.super }}</h1>{% endblock %}
+{% block mainGroup %}<h3>{{ block.super }}</h3>{% endblock %}
+{% block producer %}<h3>{{ block.super }}</h3>{% endblock %}
+
+{% block outer_description %}<meta name="description" content="{{ meta.mpage.description.content }}">{% endblock %}
+
+{% block extra_meta %}
+    {% if meta.mpage.keywords.content %}
+        <meta name="keywords" content="{{ meta.mpage.keywords.content }}"/>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dshop.page.MainPage();
+        });
+    </script>
+{% endblock %}
+
+{% block beforeSearch %}
+    <div id="adbanner"><div id="adbannerin"></div></div>
+{% endblock %}
+
+
+{% block content %}
+    {% if promoL or promoR %}
+        <div id="promo" class="section">
+            <div class="corner tl"></div><div class="corner bl"></div>
+            
+            <h2 class="h1 first icon lined"><em></em><a class="major" href="{% url articles-promo %}" title="Pełna lista promocji">Promocje</a></h2>
+            <ul class="artBoxes first">
+                {% for art in promoL %}
+                    {% include "include/main_page_article.html" %}
+                {% endfor %}
+            </ul>
+            {% if promoR %}
+            <ul class="artBoxes last">
+                {% for art in promoR %}
+                    {% include "include/main_page_article.html" %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="clear"></div>
+        </div>
+    {% endif %}
+
+    <div id="new" class="section sbottom">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        
+        <h2 class="h1 first icon lined"><em></em><a class="major" href="{% url articles-new %}" title="Pełna lista nowości">Nowości</a></h2>
+        <ul class="artBoxes first">
+            {% for art in newL %}
+                {% include "include/main_page_article.html" %}
+            {% endfor %}
+        </ul>
+        <ul class="artBoxes last">
+            {% for art in newR %}
+                {% include "include/main_page_article.html" %}
+            {% endfor %}
+        </ul>
+        <div class="clear"></div>
+    </div>
+
+    <div id="weekly" class="section sbottom">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        
+        <h2 class="h1 first icon lined"><em></em>Polecamy</h2>
+        <ul class="artBoxes first">
+            {% for art in weekL %}
+                {% include "include/main_page_article.html" %}
+            {% endfor %}
+        </ul>
+        <ul class="artBoxes last">
+            {% for art in weekR %}
+                {% include "include/main_page_article.html" %}
+            {% endfor %}
+        </ul>
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+
+
+{% block secondContent %}
+    <div id="secondCnt" class="mainPage">
+        {% if fragments.mpage_st %}
+            <div id="fragments-st" class="section stop">
+                <div class="corner tr"></div><div class="corner br"></div>
+                {% for f in fragments.mpage_st %}
+                    <div class="page-fragment">{{ f.content|safe }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if sys_param.opinions_active == "1" %}
+        <div id="opinions" class="section">
+            <div class="corner tr"></div><div class="corner br"></div>
+            <h2 class="h1 first">Najnowsze opinie</h2>
+            {% for o in opinions %}
+                <p>
+                    
+                    {{ o.short_snippet }}<br/>
+                    <a href="{{ o.article.get_absolute_url }}">/{{ o.article.name }}/</a>
+                </p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div id="news" class="section{% if not fragments.mpage_st%} stop{% endif %}{% if not fragments.mpage_sb %} sbottom{% endif %}">
+            <div class="corner tr"></div><div class="corner br"></div>
+            <h2 class="h1 first rightIcon"><em></em>Aktualności</h2>
+            <ul>
+                {% for n in news %}
+                    <li {% if forloop.last %}class="last"{% endif %}>
+                        <h3>{{ n.title|striptags }}</h3>
+                        <div>
+                            {{ n.summary|striptags }}
+                        </div>
+                        {% if n.more_link %}
+                            <p><a href="{{ n.more_link }}">więcej informacji...</a></p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% if fragments.mpage_sb %}
+            <div id="fragments-sb" class="section sbottom">
+                <div class="corner tr"></div><div class="corner br"></div>
+                {% for f in fragments.mpage_sb %}
+                    <div class="page-fragment">{{ f.content|safe }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,819 @@
+
+/* ------------------------------- Base ------------------------------------- */
+
+/* ---------------- Main Layout --------------------- */
+
+/*
+@font-face{
+  font-family:'Titilium';
+  src: url('/static/fonts/TitilliumText-1.otf');
+}
+@font-face{
+  font-family:'Titilium Bold';
+  src: url('/static/fonts/TitilliumText-750.otf');
+}
+*/
+
+body {
+    background: #f7f6f5;
+    color: #222;
+}
+#container {
+    margin: 0 auto;
+    width: auto;
+    max-width: 1440px;
+}
+
+#header {
+    background: none;
+    margin-top: 25px;
+    color: #222;
+}
+#header a:hover {
+    text-decoration: none;
+}
+
+#branding h1 {
+    color: #222;
+    font-size: 40px;
+    padding: 0 11px;
+}
+
+#user-tools {
+    padding: 1.2em 23px;
+    white-space: nowrap;
+    text-shadow: 0 1px 0 #fff;
+}
+
+
+div.breadcrumbs {
+    margin-bottom: 30px;
+    padding: 5px 0 6px 14px !important;
+    background: none;
+    border-bottom:1px solid #ddd !important;
+    border-top:1px solid white;
+    text-shadow: 0 1px 0 #fff;
+}
+
+/* --------------------- Basic --------------------- */
+
+h1 {
+    margin-top: 30px;
+}
+
+h3 {
+    margin: 25px 0 7px !important;
+    color: #f36;
+    font-size: 16px !important;
+    letter-spacing: -0.3px;
+}
+
+a, a:visited, a:link {
+    color: #0a9 !important;
+    font-weight: normal;
+
+}
+a:active, a:focus {
+    outline: none;
+}
+a:hover {
+    text-shadow: #fff 0px 1px 0;
+    background-color: #d8fffb;
+    padding: 1px 4px 2px 4px;
+    margin: -1px -4px -2px -4px;
+}
+
+.row1 {
+    background: #fcfcfc;
+}
+
+td, th {
+    padding: 7px;
+}
+th {
+    font-weight: normal;
+}
+thead th {
+    border-bottom-width: 1px;
+}
+
+/* --------------------- Buttons --------------------- */
+
+.button, input[type="submit"], input[type="button"] {
+    height: auto;
+    padding: 0.25em 0.4em;
+    font-size: 12px;
+    font-weight: normal;
+    color: #00AA99;
+    background: #fff;
+    border: 2px solid #d8fffb;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+}
+
+.button.default, input.default[type="submit"] {
+    height: auto;
+    padding: 0.25em 0.4em;
+    font-size: 12px;
+    font-weight: normal;
+    color: #00AA99;
+    background: #fff;
+    border: 2px solid #d8fffb;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+}
+
+.button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    padding: 0.25em 0.4em;
+    background: #d8fffb;
+    text-shadow: #fff 0px 1px 0;
+}
+
+.button:active, input[type="submit"]:active, input[type="button"]:active,
+.button:focus, input[type="submit"]:focus, input[type="button"]:focus {
+    background: #fff;
+    outline: none;
+}
+
+
+/* --------------------- Modules --------------------- */
+
+.module {
+    border: none;
+    background: none !important;
+}
+
+.module h2, .module caption, .inline-group h2  {
+    color: #FF3366;
+    font-size: 27px;
+    letter-spacing: -0.3px;
+    padding-left: 0;
+    margin: 35px 0 10px;
+    font-weight: normal;
+    background: none;
+}
+
+/* ------------ Messages & notifications ------------ */
+
+ul.messagelist li {
+    background-color: #fff;
+    background-position: 5px 0.4em;
+    padding: 6px 5px 6px 25px;
+    border-bottom: none;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* ------------------ Tables ------------------------ */
+
+table thead th.sorted {
+    background-position: left top !important;
+}
+table thead th.sorted a {
+    padding-right: 15px;
+}
+table thead th.sorted a:hover {
+    margin: 0;
+    padding: 0 15px 0 0;
+}
+
+
+/* ------------------------------ Change list ------------------------------- */
+
+.change-list .filtered {
+    background: none !important;
+}
+
+body.change-list .messagelist {
+    margin-bottom: -20px;
+}
+
+/* -------------- Object Tools ----------------*/
+
+.object-tools {
+    margin-top: -29px;
+}
+
+.object-tools li {
+    background: none;
+}
+
+.object-tools li:hover {
+    background: none;
+}
+
+.object-tools a:link, .object-tools a:visited {
+    font-size: 12px;
+    background: #fff;
+    height: auto;
+    padding: 4px 6px;
+    border: 2px solid #d8fffb;
+}
+
+.object-tools a:hover, .object-tools li:hover a {
+    text-shadow: #fff 0px 1px 0;
+    background: #d8fffb;
+    padding: 4px 6px;
+    margin: 0;
+}
+
+.object-tools a.viewsitelink, .object-tools a.golink {
+    background: #fff;
+}
+
+.object-tools a.viewsitelink:hover, .object-tools a.golink:hover {
+    background: #d8fffb;
+}
+
+.object-tools a.addlink {
+    background: #fff;
+}
+
+.object-tools a.addlink:hover {
+    background: #d8fffb;
+}
+
+
+/* ------------- Search ---------------- */
+
+body.change-list #content > h1 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 7px;
+    color: #f36;
+}
+
+#changelist #toolbar {
+    padding: 0;
+    background: none !important;
+    margin-bottom: 20px;
+    border-bottom: none;
+}
+#changelist #changelist-search label {
+    display: none;
+}
+#changelist #toolbar form input {
+    font-size: 14px;
+    height: 31px;
+    margin-left: -4px;
+    margin-top: 0;
+    padding: 3px 8px 5px;
+    font-weight: normal;
+}
+#changelist #toolbar form #searchbar {
+    padding: 4px;
+    height: 19px;
+    font-size: 13px;
+    font-weight: normal;
+    margin-left: 0;
+    color: #999;
+    letter-spacing: 0.8px;
+    border: 2px solid #eaeaea;
+}
+
+
+/* ------------- Top date nav and Actions ---------------- */
+
+#changelist .actions {
+    background: #EAE9E8;
+    border: none;
+}
+.filtered .actions {
+    margin-right: 0 !important;
+    border: none;
+}
+#changelist .actions .button {
+    padding: 1px 3px;
+    vertical-align: middle;
+}
+
+#changelist .toplinks {
+    border-bottom: none !important;
+    margin-bottom: 10px;
+}
+#changelist div.xfull {
+    margin-bottom: 10px;
+}
+
+.change-list ul.toplinks {
+    background: none;
+    border-bottom: none;
+    border-top: 1px solid #ddd;
+}
+
+
+/* ------------- Right side filters ---------------- */
+
+#changelist-filter {
+    width: 150px;
+    padding-left: 10px;
+    top: 40px;
+    background: none !important;
+}
+#changelist-filter h2 {
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size: 27px;
+    color: #FF3366;
+}
+#changelist-filter h3 {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+#changelist-filter ul li.selected a {
+    font-weight:bold;
+    color:#444 !important;
+}
+#changelist-filter li.selected {
+    border-left:3px solid #CCCCCC;
+    margin-left:-22px;
+    padding-left:19px;
+}
+
+
+/* ------------- Main table ---------------- */
+
+#changelist.filtered #changelist-form {
+    padding-right: 220px;
+}
+.change-list .filtered table {
+    border-right: none;
+}
+
+#changelist table {
+    width: 100% !important;
+    margin-right: 0;
+}
+
+#changelist #result_list tbody a:hover {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#changelist .paginator {
+    border: none !important;
+    background: none !important;
+}
+.paginator a:hover {
+    margin: 0;
+    background: #D8FFFB;
+    border-color: #D8FFFB;
+}
+.paginator a.end:hover {
+    margin-right: 6px;
+}
+
+#changelist table tbody td {
+    border-left: none !important;
+}
+
+
+
+/* ------------------------------- Change form ------------------------------ */
+
+/* ---------------- Structure ---------------- */
+
+body.change-form #content > h1 {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    color: #f36;
+    margin-bottom: 15px;
+}
+
+#content-main > form,
+body.change-form form {
+    background: #fff;
+    padding: 0 30px;
+}
+
+.form-row {
+    padding: 11px 0;
+    border-bottom:1px solid #EAEAEA;
+}
+
+#content-main > form {
+    padding-top: 1px;
+}
+
+body.change-form a.add-another:hover {
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+body.change-form a.related-lookup:hover {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------- Object tools ---------------- */
+
+body.change-form ul.object-tools {
+    margin-top: -38px;
+}
+
+/* ------------ Inputs & labels -------------- */
+
+input[type="text"], input[type="password"], input[type="file"], textarea, select, .vTextField {
+    border: 2px solid #ddd;
+    padding: 0.4em;
+    background: #fff;
+    color: #333;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #d8fffb;
+}
+input:disabled, textarea:disabled, select:disabled {
+    color: #333;
+    background: #f7f7f7;
+    border-color: #f7f7f7;
+    text-shadow: 0 1px 0 #fff;
+}
+.form-row input[type="checkbox"] {
+    margin-left: 13em;
+    margin-top: -1px;
+}
+
+
+label {
+    color: #555;
+}
+.aligned label {
+    width: 10.5em;
+    padding-right: 1em;
+    margin-right: 0.5em;
+    padding-top: 7px;
+}
+.aligned .vCheckboxLabel {
+    padding-right: 1em;
+}
+
+.required label, label.required {
+    font-weight: normal !important;
+    color: #555 !important;
+    background: url(star.png) right 11px no-repeat;
+}
+label.required ~ input, label.required ~ textarea, label.required ~ select {}
+
+.help, p.help {
+    text-shadow: 1px 1px 0 #fff;
+}
+
+/* ------------ Errors -------------- */
+
+.errors {
+    background: none;
+}
+.errornote {
+    margin: 15px 0 7px 0;
+    padding: 6px 5px 6px 25px;
+    background-color: #f7f6f5;
+    background-position: 5px 0.5em;
+    border: none;
+    color: #f36;
+}
+.errorlist li {
+    margin-left: 12em;
+    padding: 4px 0;
+    background-image: none;
+    background-color: transparent;
+    border: none;
+    color: #f36;
+}
+
+.errors input, .errors textarea, .errors select {
+    border: 2px solid #ffa4bb;
+}
+.errors input:focus, .errors textarea:focus, .errors select:focus {
+    border-color: #d8fffb;
+}
+
+fieldset.wide .errorlist li {
+    margin-left: 16.5em;
+}
+
+/* ------------- Submit row ---------------- */
+
+.submit-row {
+    background: #666;
+    margin: 40px -30px 0 -30px;
+}
+.submit-row input {
+    font-size: 12px;
+    font-weight: normal;
+    color: #fff;
+    background: none;
+    border: #bbb 2px solid;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.submit-row input.default {
+    font-weight: bold;
+    background: #fff;
+    color: #0a9;
+    border: 2px solid #fff;
+}
+.submit-row input:hover {
+    border-color: #fff;
+    background: none;
+    text-shadow: none;
+}
+.submit-row input.default:hover {
+    background: #fff;
+}
+
+.submit-row .deletelink {
+    color: #fff !important;
+}
+.submit-row .deletelink:hover {
+    margin: 0;
+    padding: 0 0 0 14px;
+    text-shadow: none;
+}
+
+
+form .aligned p, form .aligned ul {
+    margin-left: 11em;
+    padding-left: 21px;
+}
+
+/* ---------------- Inlines ---------------- */
+
+.inline-group {
+    border: none;
+    margin: 0;
+}
+.inline-group h2 {
+    margin-bottom: -10px;
+}
+.inline-group .tabular h2 {
+    margin-bottom: 10px;
+}
+
+.inline-related h3 {
+    background: none;
+    padding: 5px 0 12px 0;
+}
+
+.inline-group .aligned label {
+    width: 11em;
+}
+
+fieldset table {
+    border-right: none;
+}
+.inline-group .tabular fieldset.module {
+    border-bottom: none;
+}
+
+.inline-group div.add-row, .inline-group .tabular tr.add-row td {
+    background: none;
+    padding: 7px 5px;
+    border-bottom: none;
+}
+.inline-group div.add-row a:hover, .inline-group .tabular tr.add-row td a:hover {
+    padding-left: 18px;
+    background-color: #dffff8;
+    background-position: 4px 3px;
+}
+
+.inline-deletelink:hover {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+thead th.required {
+    color: #333;
+}
+
+.inline-group .tabular tr.has_original td {
+    padding-top: 2.5em;
+}
+.inline-group .tabular tr td.original {
+    padding: 4px 0 0;
+}
+.inline-group .tabular td.original p {
+    font-size: 12px;
+    font-weight: normal;
+    color: #333;
+    text-shadow: 0 1px 0 #fff;
+}
+.inline-group .tabular input[type="file"] {
+    display: block;
+}
+
+
+/* ------------------ Tabs ----------------- */
+
+body.change-form div.tab {
+    background: #fff;
+    padding-top: 1px;
+}
+
+body.change-form .form-holder form {
+    padding: 0;
+}
+body.change-form div.tab > .form-holder {
+    margin: 0 30px;
+    padding-top: 1px;
+}
+
+body.change-form div.extra div.submit-row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* ------------------ Widgets ----------------- */
+
+/* ---- Related lookup ---- */
+
+body.change-form a.related-lookup ~ strong {
+    font-size: 11px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* ---- ReadOnly ---- */
+/* ---- ModelLink ---- */
+
+body.change-form span.readonly,
+body.change-form a.model-link {
+    display: inline-block;
+    padding: 8px 0 9px 0;
+}
+body.change-form a.model-link:hover {
+    padding: 1px 4px 2px 4px;
+    margin: 7px -4px 7px -4px;
+}
+
+/* ---- DateTime ---- */
+
+body.change-form p.datetime {
+    font-weight: normal;
+    color: #555;
+}
+body.change-form .datetimeshortcuts {
+    color: #ccc;
+    font-weight: normal;
+}
+body.change-form input.vDateField,
+body.change-form input.vTimeField {
+    width: 75px;
+}
+body.change-form p.datetime input.vTimeField {
+    margin-left: 1px;
+}
+body.change-form .datetimeshortcuts:last-child a:first-child {
+    margin-right: 5px;
+}
+body.change-form .datetimeshortcuts:last-child a:first-child:hover {
+    margin-right: 1px;
+}
+body.change-form .datetimeshortcuts a:last-child:hover {
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+/* ---- Calendar ---- */
+
+body.change-form .calendar {
+    background: #fff;
+}
+body.change-form .calendarbox caption {
+    font-size: 11px;
+    margin: 0;
+    padding: 5px 0;
+    color: #666;
+}
+
+.calendarbox, .clockbox {
+    margin-left: 10px;
+    background: #fff !important;
+    -webkit-box-shadow: 3px 3px 12px #bbb;
+    -moz-box-shadow: 4px 4px 12px #bbb;
+    box-shadow: 4px 4px 12px #bbb;
+}
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next {
+    margin-top: 2px;
+    background: #fff
+}
+.calendarbox .calendarnav-previous:hover, .calendarbox .calendarnav-next:hover {
+    margin: 2px 0 0 0;
+    padding: 1px 4px 2px 4px;
+}
+
+.calendar table {
+    width: 100%;
+}
+.calendar th {
+    border-bottom: none;
+}
+.calendar td a:hover, .timelist a:hover {
+    background: #d8fffb;
+    margin: 0;
+    padding: 4px;
+}
+.calendarbox .calendar-shortcuts {
+    padding: 5px 0 1px 0;
+}
+.calendarbox .calendar-cancel, .clockbox .calendar-cancel {
+    padding: 4px 0;
+    border-top: none;
+}
+.calendar td a, .timelist a {
+    font-weight: normal;
+}
+
+.clockbox h2 {
+    font-size: 11px;
+    color: #666;
+    margin: 0;
+    padding: 4px 7px 4px 7px;
+}
+.clockbox .timelist {
+    margin-bottom: 4px;
+}
+.clockbox .timelist a {
+    padding: 2px;
+}
+.clockbox .timelist a:hover {
+    padding: 2px;
+    margin: 0;
+}
+
+/* ---- Article MWidget ---- */
+
+div.inline-group .tabular div.article_mwidget label {
+    display: none;
+}
+
+
+/* ---------------- IFrames ---------------- */
+
+body.detail-list {
+    background: #fff;
+}
+
+body.detail-list #changelist {
+    margin-top: 20px;
+}
+body.detail-list #toolbar {
+    margin-left: 28px;
+}
+
+
+/* ------------------------------- Login page ------------------------------- */
+
+body.login #container {
+    border: none;
+    -webkit-box-shadow: 3px 3px 12px 2px #bbb;
+    -moz-box-shadow: 4px 4px 12px 2px #bbb;
+    box-shadow: 4px 4px 12px 2px #bbb;
+}
+
+body.login #branding h1 {
+    margin-bottom: 20px;
+}
+body.login #content {
+    margin-top: 0;
+}
+
+body.login #content-main > form {
+    padding: 0;
+    margin-top: 0;
+}
+
+body.login .form-row {
+    float: none;
+    border: none;
+}
+body.login .form-row label {
+    width: 11em;
+    padding-top: 2px;
+    color: #666;
+}
+body.login .submit-row {
+    margin: 15px 0 0 0;
+    padding: 3px;
+    text-align: center;
+}
+body.login #footer {
+    padding: 5px 0 0 0;
+}
+
+/* -------------------------------- Dashboard ------------------------------- */
+
+/* temporary */
+
+body.dashboard #recent-actions-module { display: none; }

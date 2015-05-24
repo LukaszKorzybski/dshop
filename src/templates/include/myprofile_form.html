@@ -1,0 +1,9 @@
+{% extends "include/profile_form.html" %}
+
+{% block baseinfo_last %}
+    <li class="checkbox">
+        {{ form.newsletter.errors }}
+        {{ form.newsletter }}
+        <label for="id_newsletter">Chcę otrzymywać newsletter z informacjami o promocjach i nowościach.</label>
+    </li>
+{% endblock %}

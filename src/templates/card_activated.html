@@ -1,0 +1,22 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Karta aktywna - Optionall.pl{% endblock %}
+{% block pdivClass %}cardActive{% endblock %}
+
+
+{% block content %}
+<div class="section stop text">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    
+    <h1>Twoja karta została aktywowana</h1>
+
+    <p>
+        Teraz za każde zrealizowane zamówienie otrzymasz promocyjne
+        <a title="Sprawdź na czym polega program punktów Optio i na co możesz je wymieniać"
+            href="{{ helpLinks.discount_points.url }}">punkty Optio</a>, które możesz
+        wymieniać na nagrody</a>.</p>
+    <p>
+        <a href="{% url dshop.main.views.mainpage %}">Powrót do sklepu</a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+    <h1>Twoje zamówienie nr {{ order.number }}, zostało przekazane do realizacji.</h1>
+
+    <p>Stan zamówienia możesz w każdej chwili sprawdzić pod adresem:
+        <a href="{{ SSL_PROTO }}://{{ HOST_NAME }}{% url dshop.main.views.myOrder year=orderYear,order=order.id %}">
+            {{ SSL_PROTO }}://{{ HOST_NAME }}{% url dshop.main.views.myOrder year=orderYear,order=order.id %}
+        </a>
+    </p>
+
+    <h2>Podsumowanie zamówienia</h2>
+    <div class="order locked">
+        {% include "email/order.html" %}
+    </div>
+{% endblock %}

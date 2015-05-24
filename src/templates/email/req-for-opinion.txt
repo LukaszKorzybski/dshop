@@ -1,0 +1,30 @@
+{% extends "email/base.txt" %}
+
+{% block content %}
+Dziękujemy za dokonanie zakupów w Optionall.pl i zachęcamy do wystawienia opinii o zakupionych produktach.
+
+Twoje opinie pomogą innym dokonać wyboru dobrego produktu! Wystarczy przejść do wymienionych produktów,
+wystawienie opinii nie wymaga logowania, komentarz jest opcjonalny.
+
+{% if sys_param.opinion_service == "1" %}
+Możesz także ocenić nasz sklep w serwisie {{ sys_param.opinion_service_name }} wchodząc
+na adres: <a href="{{ sys_param.opinion_service_url }}">{{ sys_param.opinion_service_url }}</a>
+{% endif %}
+
+{% for item in baseCart.item_set.all %}
+-----------------------------------------------------------
+{{ item.name }}
+{{ item.article.get_shoparticle.get_absolute_url }}
+
+{% if item.variant %}{{ item.variants_name }}: {{ item.variant_name }}{% endif %}
+{% if item.param %}{{ item.param_name_plural }}:
+{{ item.param_value }}
+{% endif %}
+{% endfor %}
+-----------------------------------------------------------
+
+
+
+Pozdrawiamy i zapraszamy ponownie!
+
+{% endblock %}

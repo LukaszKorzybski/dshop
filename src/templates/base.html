@@ -1,0 +1,223 @@
+{% load utils %}{% load compressed %}<!DOCTYPE html>
+
+<html dir="ltr" lang="pl">
+    <head>
+        <title>{% block title %}{{ meta.default.title.content }}{% endblock %}</title>
+        <meta charset="utf-8">
+        {% block outer_description %}{% endblock %}
+        {% block extra_meta %}
+            {% for k,m in meta.extra.items %}
+                <meta name="{{ m.name }}" content="{{ m.content }}">
+            {% endfor %}
+        {% endblock %}
+        
+        <link rel="shortcut icon" href="{% version "img/favicon.ico" %}">
+
+        {% compressed_css "all-css" %}
+        <!--[if IE 8]>
+            {% compressed_css "ie8-css" %}
+        <![endif]-->
+        <!--[if lt IE 8]>
+            {% compressed_css "iesucks-css" %}
+        <![endif]-->
+
+        <!--[if lt IE 9]>
+           <script src="/static/js/html5shiv.min.js"></script>
+        <![endif]-->
+        {% block extra_head %}{% endblock %}
+    </head>
+    
+
+    <body>
+        <div id="global">
+        <div id="main" class="{% block maindivClass %}{% endblock %}">
+
+            
+            <header id="header">
+                <ul id="branding">
+                    <li id="logo">
+                        {% block logo %}
+                        <a href="{% url dshop.main.views.mainpage %}"><img src="{% version "img/optionall.png" %}" alt="OPTIONALL"/></a>
+                        {% endblock %}
+                    </li>
+                    <li id="logo-txt"><span>Z nami lakierowanie to proste zadanie</span></li>
+                </ul>
+
+                <ul id="menu">
+                    <li id="menuL">
+                        {% if client %}
+                            <a href="{% url dshop.main.views.logout %}"><img class="logout" src="{% version "img/header-menu.png" %}" alt="Wyloguj"/></a>
+                        {% else %}
+                            <a href="{% url login %}"><img src="{% version "img/header-menu.png" %}" alt="Zaloguj"/></a>
+                        {% endif %}
+                    </li>
+                    <li id="menuC"><a href="{% url dshop.main.views.myAccount %}" rel="nofollow"><img src="{% version "img/header-menu.png" %}" alt="Moje Konto"/></a></li>
+                    <li id="menuA"><a href="{% url dshop.main.views.cart %}" rel="nofollow"><img src="{% version "img/header-menu.png" %}" alt="Koszyk"/></a></li>
+                    <li id="menuH"><a href="{{ helpLinks.help.url }}"><img src="{% version "img/header-menu.png" %}" alt="Pomoc"/></a></li>
+                </ul>
+                <div class="clear"></div>
+
+                <div id="infoBox">
+                    <div class="corner l"></div>
+                    <ul>
+                        <li>
+                            <span></span>
+                            {% if client %}
+                                Witaj! Jesteś zalogowany jako {{ client.login }}.
+                            {% else %}
+                                Witaj! Pierwszy raz w Optionall? <a href="{% url dshop.main.views.register %}">Zarejestruj się</a>. Jesteś naszym klientem?
+                                <a href="{% url login %}">Zaloguj się</a>.
+                            {% endif %}
+                        </li>
+                    </ul>
+
+                    <div class="corner r"></div>
+                    <p>
+                    {% if sys_param.contact_hotline %}<span>Infolinia:</span> {{ sys_param.contact_hotline }}{% endif %}
+                    {% if sys_param.contact_email %}<span>Email:</span> {{ sys_param.contact_email }}{% endif %}
+                    {% if sys_param.contact_skype %}<span>Skype:</span> {{ sys_param.contact_skype }}{% endif %}
+                    {% if sys_param.contact_gg %}<span>GG:</span> {{ sys_param.contact_gg }}{% endif %}
+                    </p>
+                </div>
+
+                <table id="quickLinks">
+                    <tbody>
+                    <tr>
+                    {% for l in headerLinks %}
+                        <td class="border"></td>
+                        <td>
+                            <a {% if forloop.last %}class="last"{% endif %} href="{{ l.url }}">{{ l.title }}</a>
+                        </td>
+                        {% if forloop.last %}
+                            <td class="border"></td>
+                        {% endif %}
+                    {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="clear"></div>
+            </header>
+
+
+            <div id="mainNav">
+                {% block mainNav %}
+
+                {% with cart.item_count as item_count %}
+                {% if item_count %}
+                <div id="cartView" class="box">
+                    <strong><span class="corner l"></span><span class="corner r"></span>Mój Koszyk</strong>
+                    <div class="content">
+                        <a class="cview" href="{% url dshop.main.views.cart %}" rel="nofollow" title="Zajrzyj do koszyka">
+                            <span></span>
+                            <strong>{{ cart.discount_gross|money }}</strong><br/>
+                            {{ item_count }} {% ifequal item_count 1 %}rzecz{% else %}rzeczy{% endifequal %}
+                        </a>
+                        <p class="buyBtn"><a href="{% url dshop.main.views.createOrder %}" rel="nofollow"><em></em>Zamawiam!</a></p>
+                    </div>
+                    <span class="corner bl"></span>
+                    <span class="corner br"></span>
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <nav class="box" role="navigation">
+                    <strong><span class="corner l"></span><span class="corner r"></span>Asortyment</strong>
+                    <ul class="content">
+                        {% for g in mainGroups %}
+                            <li {% if forloop.last %}class="last"{% endif %}>
+                                {% block mainGroup %}<a href="{{ g.get_absolute_url }}">{{ g.name }}</a>{% endblock %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <span class="corner bl"></span>
+                    <span class="corner br"></span>
+                </nav>
+
+                <nav class="box" role="navigation">
+                    <strong><span class="corner l"></span><span class="corner r"></span>Top producenci</strong>
+                    <ul class="content">
+                        {% for p in producers %}
+                            <li>{% block producer %}<a href="{{ p.get_absolute_url }}">{{ p.name }}</a>{% endblock %}</li>
+                        {% endfor %}
+                        <li class="last more"><a href="{% url dshop.main.views.producers %}" title="Pełna lista producentów"><em></em>Zobacz wszystkich...</a></li>
+                    </ul>
+                    <span class="corner bl"></span>
+                    <span class="corner br"></span>
+                </nav>
+                
+                {% endblock %}
+            </div>
+
+            
+            <div id="content">
+                <!--[if IE 6]><div id="ie6" class="text"></div><![endif]-->
+                <main id="mainCnt">
+                    {% block beforeMainCnt %}{% endblock %}
+                    <div id="p" class="{% block pdivClass %}{% endblock %}">
+                        {% block content %}{% endblock %}
+                    </div>
+                    {% block afterMainCnt %}{% endblock %}
+                </main>
+                {% block secondContent %}{% endblock %}
+            </div>
+            <div class="clear"></div>
+
+            
+            <footer id="footer">
+                {% block footer %}
+                    <div class="base">
+                        <img src="{% version "img/payments.png" %}" alt="Płatności online - MasterCard, VISA, MTransfer"/>
+                        <ul>
+                            {% for l in footerLinks %}
+                                <li><a href="{{ l.url }}" {% if l.css %}style="{{ l.css }}"{% endif %}>{{ l.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <p>© 2007-{% now "Y" %} by PERFEKT. Wykonanie <a href="http://de-co.pl">/DE/CO</a></p>
+                        <div class="clear"></div>
+                    </div>
+
+                    {% if fragments.footer %}
+                    <ul id="fragments-footer">
+                        {% for f in fragments.footer %}
+                            <li class="page-fragment">{{ f.content|safe }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endblock %}
+            </footer>
+
+            
+        </div>
+        </div>
+
+        {% compressed_js "libs" %}
+        {% compressed_js "dshop" %}
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                dshop.media_url = '{{ MEDIA_URL }}';
+                dshop.url_prefix = '{{ URL_PREFIX }}';
+                dshop.page.Base();
+            });
+        </script>
+        {% block extra_script %}{% endblock %}
+
+        {% if on_production %}
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            
+            {% if client %}
+                ga('create', 'UA-3268293-1', { 'userId': '{{ client.client_hash }}' });
+            {% else %}
+                ga('create', 'UA-3268293-1', 'auto');
+            {% endif %}
+            ga('send', 'pageview');
+        </script>
+        {% endif %}
+
+	{% include 'cookies_policy/cookie_info.html' %}
+    </body>
+</html>

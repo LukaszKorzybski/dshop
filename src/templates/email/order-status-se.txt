@@ -1,0 +1,20 @@
+{% extends "email/base.txt" %}
+
+{% block content %}
+Twoje zamówienie nr {{ order.number }} zostało wysłane.
+
+{% with order.shipment as shipment %}{% with shipment.shipper as shipper %}
+Spedytor obsługujący zamówienie: {{ shipment.shipper_name }}
+{% if shipment.identifier %}Numer przesyłki: {{ shipment.identifier }}{% endif %}       
+{% if shipper and shipper.shipment_tracking_url %}
+Możesz śledzić stan przesyłki na stronie: {{ shipper.shipment_tracking_url }}
+{% endif %}{% endwith %}{% endwith %}
+
+Dziękujemy za dokonanie zakupów w naszym sklepie i zapraszamy ponownie!
+
+_______________________
+Podsumowanie zamówienia
+-----------------------
+{% include "email/order.txt" %}
+
+{% endblock %}

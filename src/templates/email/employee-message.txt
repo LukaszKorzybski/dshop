@@ -1,0 +1,17 @@
+{% extends "email/base.txt" %}
+
+{% block content %}
+Zamówienie nr {{ order.number }}
+
+____________________
+Wiadomość od obsługi
+--------------------
+
+{{ employee_msg }}
+
+_______________________
+Podsumowanie zamówienia
+-----------------------
+{% include "email/order.txt" %}
+
+{% endblock %}

@@ -1,0 +1,408 @@
+
+/* --------------------------------- IE7 ------------------------------------ */
+
+/* ---- Commons ---- */
+
+a.select {
+    padding-right: 20px;
+}
+
+
+/* ---- Cart ---- */
+
+div.cart #clearBtn {
+    width: 110px;
+}
+div.cart #orderBtn {
+    width: 115px;
+}
+div.cart a.back-btn {
+    width: 200px;
+}
+
+table.cart-items td.price div.count {
+}
+table.cart-items td.price div.count * {
+    vertical-align: middle;
+}
+
+
+/* ---- Order ---- */
+
+div.order ul.infoBox {
+    margin-top: -21px;
+    padding-top: 0;
+}
+div.order #courierSel {
+    width: 150px;
+}
+
+
+/* ---- Tables ---- */
+
+table.base thead tr {
+    height: 29px;
+}
+table.base thead th {
+    background: url(../img/table-head-bg.png) repeat-x;
+}
+
+
+/* ---- Layout & front page ---- */
+
+#menu li a {
+    position: relative;
+    overflow: hidden;
+}
+
+#menu li.active img {
+    top: -49px;
+}
+
+#infoBox {
+   margin-top: -10px;
+}
+
+#p.mainPage div.section {
+    position: relative;
+}
+#p.mainPage a.seeMore {
+    float: none;
+    position: absolute;
+    right: 20px;
+    text-align: right;
+}
+
+
+/* ---- Card activation ---- */
+
+#p.activateCard ul.errorlist {
+    margin-left: 275px;
+}
+
+
+/* ---- article ---- */
+
+#p.article #variantSel {
+    max-width: 220px;
+}
+#p.article #add2cart input {
+    vertical-align: middle;
+}
+#p.article #variants {
+    max-width: 400px;
+}
+#p.article #variants ul {
+    margin-top: 40px;
+    position: relative;
+}
+#p.article #variants div.v {
+    min-width: 90px;
+}
+#p.article #variants p.head {
+    position: absolute;
+    right: 100px;
+}
+#p.article #variants p.unit {
+    right: 20px;
+}
+#p.article #variants div.p {
+    float: none;
+    position: absolute;
+    right: 0;
+}
+
+#p.article #photo-choose img {
+    filter: alpha(opacity=60);
+}
+#p.article #photo-choose a.active img,
+#p.article #photo-choose a:hover img {
+    filter: alpha(opacity=100);
+}
+
+#p.article #files li {
+    padding-top: 2px;
+    margin-top: 10px;
+}
+#p.article #files li a {
+    margin-left: 10px;
+}
+
+
+/* ---- article ---- */
+
+#p.neworder #moreActions a.button {
+    width: 160px;
+}
+#p.neworder #moreActions a.minor {
+    width: 200px;
+}
+
+
+/* ---- New order payment ---- */
+
+#p.neworderPayment ul.infoBox {
+    margin-top: -20px;
+    padding-top: 8px;
+}
+
+
+/* ---- My Account ---- */
+
+#menuClear {
+    height: 0;
+}
+
+#p.myAccount ul.infoBox,
+#p.myDiscounts ul.infoBox {
+    margin-top: -20px;
+}
+#p.myDiscounts th.right {
+    width: 85px
+}
+
+
+
+
+/* --------------------------------- IE6 ------------------------------------ */
+
+
+/* ---- Search form (it was hanging ie6 before this fix!) ---- */
+
+#search input {
+    _width: 620px;
+}
+#search button {
+    _width: 60px;
+}
+
+#main.mainPage #search input {
+    _width: 370px;
+}
+
+/* ---- ie6 upgrade message ---- */
+
+#ie6 {
+    _padding: 10px 15px;
+    _background: #f5f2e9;
+}
+#ie6 a {
+    _margin-left: 10px;
+}
+
+/* ---- Turn off rounded corners ---- */
+
+#content div.section div.tl,
+#content div.section div.bl,
+#content div.section div.tr,
+#content div.section div.br,
+div.box span.br,
+div.box span.bl,
+div.gtree span,
+ul.infoBox div.itl, div.dropdown div.itl,
+ul.infoBox div.itr, div.dropdown div.itr,
+ul.infoBox div.ibl, div.dropdown div.ibl,
+ul.infoBox div.ibr, div.dropdown div.ibr {
+    _display: none;
+    _background: none;
+}
+
+/* ---- Buttons ---- */
+
+a.minor:hover {
+    _color: #ee3329;
+}
+
+/* ---- 8bit PNGs ---- */
+
+form.base ul.errorlist li {
+    _background: url(../img/sprites-8bit.png) no-repeat 0 -113px;
+}
+a.button em {
+    _background: url(../img/sprites-8bit.png) no-repeat 0 -136px;
+}
+a.button span {
+    _background: url(../img/sprites-8bit.png) no-repeat 0 -187px;
+}
+a.sbutton em {
+    _background: url(../img/sprites-8bit.png) no-repeat -129px -64px;
+}
+a.sbutton span {
+    _background: url(../img/sprites-8bit.png) no-repeat -129px 0;
+}
+a.select em.s {
+    _background: url(../img/sprites-8bit.png) no-repeat -80px -177px;
+}
+form.base ul.errorlist li {
+    _background: url(../img/sprites-8bit.png) no-repeat 0 -113px;
+}
+li.article div.price a {
+    _background: url(../img/sprites-8bit.png) 0 -21px;
+}
+ul.paging li.prev a {
+    _background: url(../img/sprites-8bit.png) 0 -54px;
+}
+ul.paging li.next a {
+    _background: url(../img/sprites-8bit.png) 0 -69px;
+}
+ul.infoBox div.icon {
+    _background: url(../img/sprites-8bit.png) -80px -40px;
+}
+table.base th.left em {
+    _background: url(../img/sprites-8bit.png) no-repeat -80px -70px;
+}
+table.base th.right em {
+    _background: url(../img/sprites-8bit.png) no-repeat -80px -136px;
+}
+table.cart-items button.delete-btn {
+    _background: url(../img/sprites-8bit.png) -129px -41px;
+}
+#facebox td.tl {
+    _background: url(../img/sprites-8bit.png) -93px -30px;
+}
+#facebox td.tr {
+    _background: url(../img/sprites-8bit.png) -93px 0;
+}
+#facebox td.bl {
+    _background: url(../img/sprites-8bit.png) -93px -20px;
+}
+#facebox td.br {
+    _background: url(../img/sprites-8bit.png) -93px -10px;
+}
+#facebox img.close_image {
+    _background: url(../img/sprites-8bit.png) -80px -222px;
+}
+#facebox.save img.close_image {
+    _background: url(../img/sprites-8bit.png) -80px -239px;
+}
+#p.register h1 em {
+    _background: url(../img/sprites-8bit.png) 0 -84px;
+}
+#p.login h1 em {
+    _background: url(../img/sprites-8bit.png) 0 -84px;
+}
+
+
+/* ---- Main page ---- */
+
+#main.mainPage #mainCnt {
+    _width: 511px;
+    _margin-right: 0;
+}
+
+#secondCnt {
+    _position: absolute;
+    _top: 95px;
+    _right: 0;
+    _width: 240px;
+}
+
+/* ---- Color chooser ---- */
+
+#fboxColor {
+    _width: 480px;
+}
+
+/* ---- Article list ---- */
+
+ul.noGtree {
+    _margin: -5px 0 0 0;
+    _padding-bottom: 0;
+    _border-bottom: none;
+}
+
+div.gtree ul {
+    _float: none;
+    _line-height: 25px;
+}
+li.article ul li {
+    _display: none;
+}
+div.gtree a {
+    _display: inline;
+}
+
+#p.article {
+    _width: 720px;
+}
+#p.article #prices {
+    _width: 330px;
+}
+#p.article #variantSel {
+    _position: static;
+}
+#p.article #variantSel em.s {
+    _position: static;
+    _float: right;
+    _margin-right: -10px;
+}
+
+/* ---- Cart page ---- */
+
+div.cart #clearBtn {
+    _width: 115px;
+}
+div.cart #orderBtn {
+    _width: 120px;
+}
+div.cart a.back-btn {
+    _width: 210px;
+}
+div.cart #moreActions li.first {
+    _margin-left: 10px;
+}
+
+#cartActions #clearAct,
+#cartActions #recalcAct {
+    _float:right;
+    _text-align:center;
+}
+#cartActions #recalcAct {
+    _margin-right: 10px;
+}
+
+
+/* ---- Register ---- */
+
+#p.register ul.errorlist {
+    _left: 535px;
+}
+
+#main form.base li.checkbox input {
+    _position: static;
+}
+
+/* ---- horizontal menu ---- */
+
+ul.horizMenu a {
+    _position: static;
+    _width: 120px;
+}
+ul.horizMenu a em.left,
+ul.horizMenu a em.right,
+ul.horizMenu span {
+    _background: none;
+    _display: none;
+}
+
+/* ---- myDiscounts ---- */
+
+#p.myDiscounts th.right {
+    _width: 110px;
+}
+
+/* ---- New order ---- */
+
+#p.neworder #moreActions a.button {
+    _width: 205px;
+}
+
+#p.neworderSummary #transferInfo {
+    _margin-bottom: 30px;
+}
+
+/* ---- My account ---- */
+
+#p.myAccount #clientInfo th.left {
+    _width: 175px;
+}

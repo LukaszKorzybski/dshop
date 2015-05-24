@@ -1,0 +1,12 @@
+<ul class="wizardSteps">
+    <li {% ifequal menu "new-order" %}class="active"{% endifequal %}>
+        <em class="left"></em><span></span>Koszyk i dostawa
+    </li>
+    <li {% ifequal menu "new-order-payment" %}class="active"{% endifequal %}>
+        <span></span>Wybór płatności
+    </li>
+    <li {% ifequal menu "new-order-summary" %}class="active"{% endifequal %}>
+        <em class="right"></em><span></span>Podsumowanie
+    </li>
+</ul>
+<div id="menuClear" class="clear"></div>

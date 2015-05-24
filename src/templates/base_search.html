@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block beforeMainCnt %}
+    <div id="search" class="section stop">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        {% block beforeSearch %}{% endblock %}
+        <form class="search" action="{% url dshop-search %}">
+            <fieldset>
+                <div class="l"></div><input type="text" name="text" value="{{ searchText }}"><div class="r"></div>
+                <button type="submit"></button>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

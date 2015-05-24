@@ -1,0 +1,74 @@
+{% extends "base_nonav.html" %}
+
+{% block title %}Logowanie - Optionall.pl{% endblock %}
+{% block pdivClass %}login{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+
+    <h1 class="space icon"><em></em>Logowanie</h1>
+
+    <div id="register">
+        <h2>
+            Jeżeli nie posiadasz konta w naszym sklepie,<br/>
+            możesz się teraz zarejestrować.
+        </h2>
+        Jest to niezbędne jeśli chcesz złożyć zamówienie.
+        
+        <a id="btn_register" class="button" href="{% url dshop.main.views.register %}"><em></em><span></span>Zarejestruj się</a>
+    </div>
+
+    <form class="base bold etop ebottom" action="." method="post">
+        <h2>Jeżeli jesteś już zarejestrowany</h2>
+        
+        <fieldset class="first">
+            {{ form.next }}
+
+            <ul>
+                {% if errmsg %}
+                    <li>
+                        <ul class="errorlist">
+                            {% ifequal errmsg "login-invalid" %}
+                                <li>Nieprawidłowa nazwa użytkownika lub hasło.</li>
+                            {% endifequal %}
+                            {% ifequal errmsg "cookies-disabled" %}
+                                <li>Twoja przeglądarka nie obsługuje plików cookies lub są one zablokowane.</li>
+                            {% endifequal %}
+                            {% ifequal errmsg "inactive" %}
+                                <li>Twoje konto jest nieaktywne. Znajdź email aktywacyjny w Twojej skrzynce pocztowej
+                                i aktywuj konto. Następnie spróbuj ponownie się zalogować.</li>
+                            {% endifequal %}
+                        </ul>
+                    </li>
+                {% endif %}
+
+                <li>
+                    {{ form.username.errors }}
+                    <label for="id_username">Email:</label>
+                    {{ form.username }}
+                </li>
+                <li>
+                    {{ form.password.errors }}
+                    <label for="id_password">Hasło:</label>
+                    {{ form.password }}
+                </li>
+                <li class="checkbox">
+                    {{ form.remember.errors }}
+                    {{ form.remember }}
+                    <label for="id_remember">Zapamiętaj mnie na tym komputerze</label>
+                </li>
+            </ul>
+            
+            <button type="submit" id="btn_login" class="button submit"><em></em><span></span>Zaloguj się</button>            
+            
+            <br><br><br>
+            <p>Jeśli zapomniałeś hasło kliknij <a href="/odzyskaj-haslo/" style="text-decoration: underline">odzyskaj hasło</a>.</p>
+        </fieldset>        
+    </form>
+    <div class="clear"></div>
+    
+    {% include "include/security_note.html" %}
+    
+</div>
+{% endblock %}

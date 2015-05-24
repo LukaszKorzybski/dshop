@@ -1,0 +1,72 @@
+{% extends "base_search.html" %}
+{% load utils dshop_utils %}
+
+{% block title %}Wyniki wyszukiwania - Sklep Optionall.pl{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dshop.page.Articles();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    {% if articles.total_items and gtree %}
+        <div class="section">
+            <div class="corner tl"></div><div class="corner bl"></div>
+
+            <h1 class="lined">{{ searchText }}{% if group %} / {{group.name }}{% endif %} - Wyniki wyszukiwania</h1>
+            
+            {% include "include/search_gpath.html" %}
+            <div class="gtree">
+                <ul class="first">
+                {% for g in gtree.children_by_count %}
+                    <li><a href="{% url dshop-search-g searchText,g.id,g.group.slug %}"><span></span>{{ g.group.name }} <em>({{ g.count }})</em></a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    {% endif %}
+
+    {% if articles and not articles.onepage %}
+        <div id="article-list" class="section paging">
+            <div class="corner tl"></div><div class="corner bl"></div>
+            {{ articles|paging:pagingPrefix|safe }}
+        </div>
+    {% endif %}
+
+    <div class="section">
+        <div class="corner tl"></div><div class="corner bl"></div>
+        {% if not gtree %}
+            <h1 class="lined">Wyniki wyszukiwania dla "{{ searchText }}"{% if group %} / {{group.name }}{% endif %}</h1>
+            {% include "include/search_gpath.html" %}
+        {% endif %}
+
+        {% if tooShort %}
+            <p class="msg error">Wpisz co najmniej 2 znaki w okienko wyszukiwarki.</p>
+        {% else %}
+            {% if articles.total_items %}
+                <ul class="articles">
+                    {% for art in articles.items %}
+                        {% include "include/article_list.html" %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                Niestety nie znaleziono produktów pasujących do podanej przez Ciebie frazy.
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {% if articles and not articles.onepage %}
+        <div class="section paging">
+            <div class="corner tl"></div><div class="corner bl"></div>
+            {{ articles|paging:pagingPrefix|safe }}
+        </div>
+    {% endif %}
+
+    {% include "include/add2cart_form.html" %}
+    
+{% endblock %}

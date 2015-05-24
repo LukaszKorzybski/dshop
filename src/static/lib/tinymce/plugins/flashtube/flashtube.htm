@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#flashtube_dlg.title}</title>
+	<link href="css/flashtube.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/flashtube.js"></script>
+</head>
+<body>
+
+<form id="ft_form" onsubmit="FlashTube.dialog.insert();return false;" action="#">
+	<h3>{#flashtube_dlg.dlg_title}</h3>
+	<div id="toolbar">
+		<label for="id_titles"><input type="checkbox" id="id_titles"/> With titles</label>
+		<input type="button" id="add_video" name="add_video" value="{#flashtube_dlg.add_video}" onclick="FlashTube.dialog.addVideo();" />
+	</div>
+	
+	<div id="videos">
+	<p><strong>{#flashtube_dlg.video} 1</strong></p>
+	<ul>
+		<li><label for="id_title1">{#flashtube_dlg.title}</label><input id="id_title1" name="title1" type="text" class="text"/></li>
+		<li><label for="id_url1">{#flashtube_dlg.url}</label><input id="id_url1" name="url1" type="text" class="text"/></li>
+	</ul>
+	<p><strong>{#flashtube_dlg.video} 2</strong></p>
+	<ul>
+		<li><label for="id_title2">{#flashtube_dlg.title}</label><input id="id_title2" name="title2" type="text" class="text"/></li>
+		<li><label for="id_url2">{#flashtube_dlg.url}</label><input id="id_url2" name="url2" type="text" class="text"/></li>
+	</ul>
+	<p><strong>{#flashtube_dlg.video} 3</strong></p>
+	<ul>
+		<li><label for="id_title3">{#flashtube_dlg.title}</label><input id="id_title3" name="title3" type="text" class="text"/></li>
+		<li><label for="id_url3">{#flashtube_dlg.url}</label><input id="id_url3" name="url3" type="text" class="text"/></li>
+	</ul>
+	<p><strong>{#flashtube_dlg.video} 4</strong></p>
+	<ul>
+		<li><label for="id_title4">{#flashtube_dlg.title}</label><input id="id_title4" name="title4" type="text" class="text"/></li>
+		<li><label for="id_url4">{#flashtube_dlg.url}</label><input id="id_url4" name="url4" type="text" class="text"/></li>
+	</ul>
+	<div id="add_videos"></div>
+	</div>
+	
+	<div id="actions">
+		<div style="float: left">
+			<input type="button" id="insert" name="insert" value="{#insert}" onclick="FlashTube.dialog.insert();" />
+		</div>
+
+		<div style="float: right">
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+		</div>
+	</div>
+</form>
+
+</body>
+</html>

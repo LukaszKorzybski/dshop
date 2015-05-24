@@ -1,0 +1,39 @@
+{% extends "base_nonav.html" %}
+{% load utils %}
+
+{% block title %}Złożono zamówienie - Optionall.pl{% endblock %}
+{% block pdivClass %}neworderSummary{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dshop.page.NewOrderPayment();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="section stop">
+    <div class="corner tl"></div><div class="corner bl"></div>
+    <h1>Twoje zamówienie otrzymało numer {{ order.number }}</h1>
+
+    {% ifequal order.payment "TR" %}
+        <h2>Dane do przelewu</h2>
+        <p id="transferInfo">
+        <strong>{{ company.name }}</strong><br/>
+        ul. {{ company.addr_street }}<br/>
+        {{ company.addr_code }} {{ company.addr_town }}<br/><br/>
+        
+        <strong>Konto bankowe</strong><br/>
+        {{ company.account_bank }}<br/>
+        {{ company.account_no }}
+        </p>
+        
+        <h2>Podsumowanie zamówienia</h2>
+    {% endifequal %}
+
+    {% include "include/order.html" %}
+
+    <a id="backBtn" class="button" href="{% url dshop.main.views.mainpage %}"><em></em><span></span>Powrót do sklepu</a>
+</div>
+{% endblock %}

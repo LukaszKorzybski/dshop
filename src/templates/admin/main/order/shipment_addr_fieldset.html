@@ -1,0 +1,47 @@
+<fieldset class="module aligned {{ fieldset.classes }}">
+  {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+  {% if fieldset.description %}<div class="description">{{ fieldset.description|safe }}</div>{% endif %}
+  {% for line in fieldset %}
+      <div class="form-row{% if line.errors %} errors{% endif %} {% for field in line %}{{ field.field.name }} {% endfor %} ">
+      {{ line.errors }}
+      {% for field in line %}
+      <div{% if not line.fields|length_is:"1" %} class="field-box"{% endif %}>
+          {% if field.is_checkbox %}
+              {{ field.field }}{{ field.label_tag }}
+          {% else %}
+              {{ field.label_tag }}{{ field.field }}
+          {% endif %}
+          {% if field.field.field.help_text %}<p class="help">{{ field.field.field.help_text|safe }}</p>{% endif %}
+      </div>
+      {% endfor %}
+      </div>
+  {% endfor %}
+
+  {% with original.shipment as shipment %}
+      <div class="form-row company_name">
+          <div>
+              <label>Nazwa firmy</label> <span class="readonly">{{ shipment.company_name }}</span>
+          </div>
+      </div>
+      <div class="form-row name">
+          <div>
+              <label>Imię i nazwisko</label> <span class="readonly">{{ shipment.first_name }} {{ shipment.last_name }}</span>
+          </div>
+      </div>
+      <div class="form-row street">
+          <div>
+              <label>Ulica</label> <span class="readonly">{{ shipment.street }} {{ shipment.number }}</span>
+          </div>
+      </div>
+      <div class="form-row town">
+          <div>
+              <label>Miejscowość</label> <span class="readonly">{{ shipment.code }}, {{ shipment.town }}</span>
+          </div>
+      </div>
+      <div class="form-row phone">
+          <div>
+              <label>Telefon</label> <span class="readonly">{{ shipment.phone }} {% if shipment.second_phone %} lub {{ shipment.second_phone }}{% endif %}</span>
+          </div>
+      </div>
+  {% endwith %}
+</fieldset>

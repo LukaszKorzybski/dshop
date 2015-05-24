@@ -1,0 +1,18 @@
+{% load utils %}
+
+<td class="o cnt">{{ forloop.counter }}</td>
+{% include "email/article-name.html" %}
+<td class="o unit">{{ ek.unit_short }}</td>
+<td class="e price">
+    <div class="uprice">
+        <span {% if ek.is_discount %}class="promo"{% endif %}>{{ ek.discount_gross|money }}</span><br/>
+        <span class="net">{{ ek.discount_net|money }}</span>
+    </div>
+    <div class="count">
+        &times; {% block count %}{{ ek.qty|number:"-1" }}{% endblock %} =
+    </div>
+    <div class="sumprice">
+        <strong {% if ek.is_discount %}class="promo"{% endif %}>{{ ek.sum_discount_gross|money }}</strong><br/>
+        <span class="net">{{ ek.sum_discount_net|money }}</span>
+    </div>
+</td>
