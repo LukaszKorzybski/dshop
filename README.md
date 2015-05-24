@@ -21,4 +21,7 @@ When that finishes without errors start the application:
 
 You can now access the application at `http://localhost:8000`
 
+Admin panel is located at `http://localhost:8000/new-admin/` username/password is 
+dshop/dshop
+
 Have fun.
