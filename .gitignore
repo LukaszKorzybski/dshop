@@ -1,0 +1,9 @@
+/log
+/src/static/css/*_comp.*
+/src/static/js/*_comp.*
+/src/dshop/settings_local.py
+/vagrant/dshop-data.sql
+
+.DS_Store
+*.pyc
+*.log
