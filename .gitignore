@@ -1,8 +1,10 @@
+/.vagrant
 /log
 /src/static/css/*_comp.*
 /src/static/js/*_comp.*
 /src/dshop/settings_local.py
 /vagrant/dshop-data.sql
+/dshop-data.url
 
 .DS_Store
 *.pyc

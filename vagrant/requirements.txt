@@ -12,7 +12,7 @@ django-picklefield==0.1.8
 httplib2>=0.9
 ipython==0.10
 lxml==2.2.8
-PIL==1.1.7
+Pillow==2.8.1
 premailer==1.9
 psycopg2>=2.5
 pyparsing==1.5.5

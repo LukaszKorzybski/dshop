@@ -1,0 +1,1 @@
+WEBAPP_ROOT_DIR="/vagrant"

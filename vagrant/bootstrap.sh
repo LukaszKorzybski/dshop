@@ -1,6 +1,24 @@
 #!/usr/bin/env bash
 
+function die() {
+    printf "${1}.\n"
+    printf "Provisioning aborted due to errors. Check console output for details.\n"
+    exit 1
+}
+
+cd /vagrant/vagrant
+
+# Database data dump
+if [ ! -f ../dshop-data.url ]
+then
+    die "dshop-data.url file is missing. Please read README.md file and try again"    
+fi
+
+DB_DUMP_URL=$(cat ../dshop-data.url | head -n 1)
+curl -L -o dshop-data.sql "$DB_DUMP_URL" || die "Downloading DB dump file failed"
+
 # Locale
+locale-gen en_GB.UTF-8
 locale-gen pl_PL.UTF-8
 update-locale
 
@@ -8,6 +26,8 @@ update-locale
 apt-get update
 apt-get install -y vim
 apt-get install -y unzip
+apt-get install -y curl
+apt-get install -y expect
 apt-get install -y python-pip
 
 # DShop software dependencies
@@ -20,17 +40,18 @@ apt-get install -y sphinxsearch
 apt-get install -y apache2
 
 # Python modules
-pip install -r /vagrant/vagrant/requirements.txt
+pip install -r requirements.txt || die "Installing Python modules failed"
 
 # Apache
 rm -rf /var/www
 ln -s /vagrant/src /var/www
-#cp /vagrant/dshop.vhost /etc/apache2/sites-available/dshop
+#cp dshop.vhost /etc/apache2/sites-available/dshop
 #a2ensite dshop
 #/etc/init.d/apache2 restart
 
 # PostgreSQL
-export PGPASSFILE=/vagrant/vagrant/pgpass
+export PGPASSFILE=pgpass
+chmod 600 pgpass
 
 PG_CLUSTER=$(pg_lsclusters | cut -d ' ' -f 1 | tail -n 1)
 pg_dropcluster --stop $PG_CLUSTER main
@@ -38,17 +59,14 @@ pg_createcluster --locale pl_PL.UTF8 --start $PG_CLUSTER main
 
 sudo -u postgres psql -c "create user dshop with superuser createdb password 'dshop';"
 sudo -u postgres psql -c "create database dshop_devel with encoding 'utf8' lc_ctype 'pl_PL.UTF8' owner dshop;"
-sudo -u postgres psql -f
 
-
-tar -xzf /vagrant/vagrant/dshop_optionall.sql.tgz
-chmod +x /vagrant/vagrant/load_database.ex
-/vagrant/load_database.ex
+psql -h localhost -U dshop -f dshop-schema.sql dshop_devel
+psql -h localhost -U dshop -f dshop-data.sql dshop_devel
 
 # Sphinx search
-cp /vagrant/vagrant/sphinx.conf /etc/sphinxsearch
+cp sphinx.conf /etc/sphinxsearch
 
-wget https://github.com/szoper/sphinxsearch-wordforms-pl/raw/master/pl_PL.UTF-8.txt.zip
+curl -L -O https://github.com/szoper/sphinxsearch-wordforms-pl/raw/master/pl_PL.UTF-8.txt.zip || die "Downloading polish word forms for Sphinx Search failed"
 unzip pl_PL.UTF-8.txt.zip
 rm pl_PL.UTF-8.txt.zip
 mv pl_PL.UTF-8.txt /var/lib/sphinxsearch
@@ -59,5 +77,14 @@ chown sphinxsearch /var/lib/sphinxsearch/pl_PL.UTF-8.txt
 echo 'START=yes' > /etc/default/sphinxsearch
 /etc/init.d/sphinxsearch start
 
-# Source files
+# Dshop 
+cp settings_local.py /vagrant/src/dshop
 
+chmod +x create-superuser.ex
+cd ../src/dshop
+./create-superuser.ex
+cd ../../vagrant
+
+cp run.template /home/vagrant/run
+chmod +x /home/vagrant/run
+chown vagrant:vagrant /home/vagrant/run
