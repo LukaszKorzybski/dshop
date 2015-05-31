@@ -50,8 +50,10 @@ ln -s /vagrant/src /var/www
 #/etc/init.d/apache2 restart
 
 # PostgreSQL
-export PGPASSFILE=pgpass
-chmod 600 pgpass
+cp pgpass ${HOME}
+chmod 600 ${HOME}/pgpass
+export PGPASSFILE=${HOME}/pgpass
+
 
 PG_CLUSTER=$(pg_lsclusters | cut -d ' ' -f 1 | tail -n 1)
 pg_dropcluster --stop $PG_CLUSTER main
