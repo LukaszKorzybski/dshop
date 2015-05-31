@@ -8,15 +8,6 @@ function die() {
 
 cd /vagrant/vagrant
 
-# Database data dump
-if [ ! -f ../dshop-data.url ]
-then
-    die "dshop-data.url file is missing. Please read README.md file and try again"    
-fi
-
-DB_DUMP_URL=$(cat ../dshop-data.url | head -n 1)
-curl -L -o dshop-data.sql "$DB_DUMP_URL" || die "Downloading DB dump file failed"
-
 # Locale
 locale-gen en_GB.UTF-8
 locale-gen pl_PL.UTF-8
@@ -29,6 +20,15 @@ apt-get install -y unzip
 apt-get install -y curl
 apt-get install -y expect
 apt-get install -y python-pip
+
+# Download database data dump
+if [ ! -f ../dshop-data.url ]
+then
+    die "dshop-data.url file is missing. Please read README.md file and try again"    
+fi
+
+DB_DUMP_URL=$(cat ../dshop-data.url | head -n 1)
+curl -L -o dshop-data.sql "$DB_DUMP_URL" || die "Downloading DB dump file failed"
 
 # DShop software dependencies
 apt-get install -y libxml2-dev 
